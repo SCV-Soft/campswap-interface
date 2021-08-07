@@ -62,11 +62,11 @@ export default function Earn() {
           <CardSection>
             <AutoColumn gap="md">
               <RowBetween>
-                <TYPE.white fontWeight={600}>SushiSwap liquidity mining</TYPE.white>
+                <TYPE.white fontWeight={600}>CampSwap liquidity mining</TYPE.white>
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit your Liquidity Provider tokens to receive SUSHI, the SushiSwap protocol governance token.
+                  Deposit your Liquidity Provider tokens to receive CAMP, the CampSwap protocol governance token.
                 </TYPE.white>
               </RowBetween>{' '}
               {/* <ExternalLink

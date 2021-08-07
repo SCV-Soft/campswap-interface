@@ -352,7 +352,7 @@ export default function Header() {
             {t('pool')}
           </StyledNavLink>
           {/* <StyledNavLink id={`stake-nav-link`} to={'/sushi'}>
-            SUSHI
+            CAMP
           </StyledNavLink> */}
           {/* <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
@@ -400,7 +400,7 @@ export default function Header() {
                     </TYPE.white>
                   </HideSmall>
                 )}
-                SUSHI
+                CAMP
               </UNIAmount>
               <CardNoise />
             </UNIWrapper>

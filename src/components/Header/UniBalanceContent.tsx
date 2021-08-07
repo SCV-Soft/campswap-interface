@@ -67,7 +67,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">Your SUSHI Breakdown</TYPE.white>
+            <TYPE.white color="white">Your CAMP Breakdown</TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowUniBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -118,7 +118,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
               <ExternalLink href={`https://analytics.sushiswap.fi/tokens/${uni.address}`}>
-                View SUSHI Analytics
+                View CAMP Analytics
               </ExternalLink>
             ) : null}
           </AutoColumn>
