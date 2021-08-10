@@ -6,7 +6,7 @@ import { fortmatic, injected, portis, lattice, walletconnect, walletlink } from 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F',
   [ChainId.RINKEBY]: '0x78651262A36342c4Ab878ec312D2c1A9494ADDf5',
-  [ChainId.ROPSTEN]: '0x78651262A36342c4Ab878ec312D2c1A9494ADDf5',
+  [ChainId.ROPSTEN]: '0x93E05Fe37D7AA84B33deed6735624694CaeF7c63', // CAMP Ropsten
   [ChainId.GÖRLI]: '0xC0fBF54bbf3f5ef013559905AF214648e8e50010',
   [ChainId.KOVAN]: '0xB6167233BF964ea7701691aC3970186145C810d2'
 }
@@ -49,10 +49,11 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
 // const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
 
+// Address for CAMP token
 export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2', 18, 'CAMP', 'CampToken'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'CAMP', 'CampToken'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'CAMP', 'CampToken'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x881c180639052b8097C72DCaDeFA5d626678Db98', 18, 'CAMP', 'CampToken'), // CAMP Ropsten
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'CAMP', 'CampToken'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'CAMP', 'CampToken')
 }
