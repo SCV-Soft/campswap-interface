@@ -38,6 +38,15 @@ export const FXS = new Token(ChainId.MAINNET, '0x3432B6A60D23Ca0dFCa7761B7ab5645
 export const CRV = new Token(ChainId.MAINNET, '0xD533a949740bb3306d119CC777fa900bA034cd52', 18, 'CRV', 'Curve Dao Token')
 export const ALPHA = new Token(ChainId.MAINNET, '0xa1faa113cbE53436Df28FF0aEe54275c13B40975', 18, 'ALPHA', 'AlphaToken')
 
+// Rinkeby custom test tokens
+//export const WETH = new Token(ChainId.RINKEBY, '0x48e7EBef10e3926DE2D47dB31b3FD22e7fFb0885', 18, 'WETH', 'WETH');
+export const SLUG = new Token(ChainId.RINKEBY, '0x391D9492Ba0EC61C3746512425aeFcB16bb74f04', 18, 'SLUG', 'Soft Landed Grams');
+export const BELL = new Token(ChainId.RINKEBY, '0x82f80eFF98dbDda3037F6f7b615b72181421B415', 18, 'BELL', 'Bell');
+export const RUP = new Token(ChainId.RINKEBY, '0xc3744014fBd22988A3d3B34686F8Cd4a62A59968', 18, 'RUP', 'Rupee');
+export const EuroDollar = new Token(ChainId.RINKEBY, '0x1256157d1D95De7A8af4C1c663DbfBb2Ae481cCd', 18, 'Eb', 'EuroDollar');
+export const ChinYen = new Token(ChainId.RINKEBY, '0x38899cf94c71cB05F8E178EfB2F5B27E5ACf582B', 18, 'CY', 'Chin-Yen');
+export const ERIS = new Token(ChainId.RINKEBY, '0xe42a5A89C5b0E0c0aE7271e1f7B8765585982bef', 18, 'ERIS', 'Eris');
+
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
@@ -80,7 +89,8 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, CAMP, YAM, WBTC, RUNE, CREAM, BAC, FXS, CRV, ALPHA]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, CAMP, YAM, WBTC, RUNE, CREAM, BAC, FXS, CRV, ALPHA],
+  [ChainId.RINKEBY]: [...WETH_ONLY[ChainId.RINKEBY], SLUG, BELL, RUP, EuroDollar, ChinYen, ERIS]
   // [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC]
 }
 
