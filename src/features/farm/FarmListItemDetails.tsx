@@ -3,7 +3,7 @@ import { ChainId, MASTERCHEF_ADDRESS, Token, ZERO } from '@sushiswap/sdk'
 import { Chef, PairType } from './enum'
 import { Disclosure, Transition } from '@headlessui/react'
 import React, { useState } from 'react'
-import { usePendingSushi, useUserInfo } from './hooks'
+import { usePendingCamp, useUserInfo } from './hooks'
 
 import Button from '../../components/Button'
 import Dots from '../../components/Dots'
@@ -45,7 +45,7 @@ const FarmListItem = ({ farm }) => {
   // TODO: Replace these
   const amount = useUserInfo(farm, liquidityToken)
 
-  const pendingSushi = usePendingSushi(farm)
+  const pendingCamp = usePendingCamp(farm)
 
   const reward = usePendingReward(farm)
 
@@ -186,7 +186,7 @@ const FarmListItem = ({ farm }) => {
             </Button>
           </div>
         </div>
-        {pendingSushi && pendingSushi.greaterThan(ZERO) && (
+        {pendingCamp && pendingCamp.greaterThan(ZERO) && (
           <div className="px-4 pb-4">
             <Button
               color="gradient"
@@ -203,7 +203,7 @@ const FarmListItem = ({ farm }) => {
                 setPendingTx(false)
               }}
             >
-              {i18n._(t`Harvest ${formatNumber(pendingSushi.toFixed(18))} SUSHI ${
+              {i18n._(t`Harvest ${formatNumber(pendingCamp.toFixed(18))} CAMP ${
                 farm.rewards.length > 1 ? `& ${formatNumber(reward)} ${farm.rewards[1].token}` : null
               }
                 `)}

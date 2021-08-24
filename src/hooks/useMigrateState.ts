@@ -5,7 +5,7 @@ import useLPTokensState, { LPTokensState } from './useLPTokensState'
 import { ChainId } from '@sushiswap/sdk'
 import { parseUnits } from '@ethersproject/units'
 import { useActiveWeb3React } from './useActiveWeb3React'
-import useSushiRoll from './useSushiRoll'
+import useCampRoll from './useCampRoll'
 
 export type MigrateMode = 'permit' | 'approve'
 
@@ -22,7 +22,7 @@ export interface MigrateState extends LPTokensState {
 const useMigrateState: () => MigrateState = () => {
   const { library, account, chainId } = useActiveWeb3React()
   const state = useLPTokensState()
-  const { migrate, migrateWithPermit } = useSushiRoll(state?.selectedLPToken?.version)
+  const { migrate, migrateWithPermit } = useCampRoll(state?.selectedLPToken?.version)
   const [mode, setMode] = useState<MigrateMode>()
   const [amount, setAmount] = useState('')
   const addTransaction = useTransactionAdder()
@@ -52,7 +52,7 @@ const useMigrateState: () => MigrateState = () => {
       }
 
       addTransaction(tx, {
-        summary: `Migrate ${exchange} ${state.selectedLPToken.symbol} liquidity to SushiSwap`,
+        summary: `Migrate ${exchange} ${state.selectedLPToken.symbol} liquidity to CampSwap`,
       })
       setPendingMigrationHash(tx.hash)
 

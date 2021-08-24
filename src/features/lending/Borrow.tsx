@@ -11,7 +11,7 @@ import { useExpertModeManager, useUserSlippageToleranceWithDefault } from '../..
 import Button from '../../components/Button'
 import { Field } from '../../state/swap/actions'
 import KashiCooker from '../../entities/KashiCooker'
-import { SUSHISWAP_MULTISWAPPER_ADDRESS } from '../../constants/kashi'
+import { CAMPSWAP_MULTISWAPPER_ADDRESS } from '../../constants/kashi'
 import SmartNumberInput from '../../components/SmartNumberInput'
 import TradeReview from './TradeReview'
 import { TransactionReview } from '../../entities/TransactionReview'
@@ -253,7 +253,7 @@ export default function Borrow({ pair }: BorrowProps) {
       cooker.borrow(
         borrowValue.toBigNumber(pair.asset.tokenInfo.decimals),
         swap || useBentoBorrow,
-        swap ? SUSHISWAP_MULTISWAPPER_ADDRESS[chainId || 1] : ''
+        swap ? CAMPSWAP_MULTISWAPPER_ADDRESS[chainId || 1] : ''
       )
     }
     if (borrowValueSet && trade) {
@@ -287,7 +287,7 @@ export default function Borrow({ pair }: BorrowProps) {
       )
 
       cooker.action(
-        SUSHISWAP_MULTISWAPPER_ADDRESS[chainId || 1],
+        CAMPSWAP_MULTISWAPPER_ADDRESS[chainId || 1],
         ZERO,
         ethers.utils.hexConcat([ethers.utils.hexlify('0x3087d742'), data]),
         false,

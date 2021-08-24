@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import { AXSUSHI, SUSHI } from '../../../constants'
-import { ChainId, SUSHI_ADDRESS } from '@sushiswap/sdk'
+import { AXCAMP, CAMP } from '../../../constants'
+import { ChainId, CAMP_ADDRESS } from '@sushiswap/sdk'
 import { useActiveWeb3React } from '../../../hooks'
 import { useTokenBalances } from '../../wallet/hooks'
 import { StrategyGeneralInfo, StrategyHook, StrategyTokenDefinitions } from '../types'
@@ -8,35 +8,35 @@ import useBaseStrategy from './useBaseStrategy'
 import { useEffect, useMemo } from 'react'
 
 export const general: StrategyGeneralInfo = {
-  name: 'SUSHI → Aave',
-  steps: ['SUSHI', 'xSUSHI', 'Aave'],
-  zapMethod: 'stakeSushiToAave',
-  unzapMethod: 'unstakeSushiFromAave',
-  description: t`Stake SUSHI for xSUSHI and deposit into Aave in one click. xSUSHI in Aave (aXSUSHI) can be lent or used as collateral for borrowing.`,
-  inputSymbol: 'SUSHI',
-  outputSymbol: 'xSUSHI in Aave',
+  name: 'CAMP → Aave',
+  steps: ['CAMP', 'xCAMP', 'Aave'],
+  zapMethod: 'stakeCampToAave',
+  unzapMethod: 'unstakeCampFromAave',
+  description: t`Stake CAMP for xCAMP and deposit into Aave in one click. xCAMP in Aave (aXCAMP) can be lent or used as collateral for borrowing.`,
+  inputSymbol: 'CAMP',
+  outputSymbol: 'xCAMP in Aave',
 }
 
 export const tokenDefinitions: StrategyTokenDefinitions = {
   inputToken: {
     chainId: ChainId.MAINNET,
-    address: SUSHI_ADDRESS[ChainId.MAINNET],
+    address: CAMP_ADDRESS[ChainId.MAINNET],
     decimals: 18,
-    symbol: 'SUSHI',
+    symbol: 'CAMP',
   },
   outputToken: {
     chainId: ChainId.MAINNET,
     address: '0xf256cc7847e919fac9b808cc216cac87ccf2f47a',
     decimals: 18,
-    symbol: 'aXSUSHI',
+    symbol: 'aXCAMP',
   },
 }
 
-const useStakeSushiToAaveStrategy = (): StrategyHook => {
+const useStakeCampToAaveStrategy = (): StrategyHook => {
   const { account } = useActiveWeb3React()
-  const balances = useTokenBalances(account, [SUSHI[ChainId.MAINNET], AXSUSHI])
+  const balances = useTokenBalances(account, [CAMP[ChainId.MAINNET], AXCAMP])
   const { setBalances, ...strategy } = useBaseStrategy({
-    id: 'stakeSushiToAaveStrategy',
+    id: 'stakeCampToAaveStrategy',
     general,
     tokenDefinitions,
   })
@@ -45,8 +45,8 @@ const useStakeSushiToAaveStrategy = (): StrategyHook => {
     if (!balances) return
 
     setBalances({
-      inputTokenBalance: balances[SUSHI[ChainId.MAINNET].address],
-      outputTokenBalance: balances[AXSUSHI.address],
+      inputTokenBalance: balances[CAMP[ChainId.MAINNET].address],
+      outputTokenBalance: balances[AXCAMP.address],
     })
   }, [balances, setBalances])
 
@@ -59,4 +59,4 @@ const useStakeSushiToAaveStrategy = (): StrategyHook => {
   )
 }
 
-export default useStakeSushiToAaveStrategy
+export default useStakeCampToAaveStrategy

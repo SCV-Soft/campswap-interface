@@ -1,4 +1,4 @@
-import { useCustomDayBlock, useOneDayBlock, useOneWeekBlock, useSushiPairs } from '../../../services/graph'
+import { useCustomDayBlock, useOneDayBlock, useOneWeekBlock, useCampPairs } from '../../../services/graph'
 
 import Container from '../../../components/Container'
 import Head from 'next/head'
@@ -23,11 +23,11 @@ export default function Pairs() {
   //   console.log('debug', { block1d, block2d, block1w, block2w })
   // }, [block1d, block2d, block1w, block2w])
 
-  const pairs = useSushiPairs()
-  const pairs1d = useSushiPairs({ block: { number: Number(block1d) } })
-  const pairs2d = useSushiPairs(type !== 'all' ? { block: { number: Number(block2d) } } : undefined) // No need to fetch if we don't need the data
-  const pairs1w = useSushiPairs({ block: { number: Number(block1w) } })
-  const pairs2w = useSushiPairs(type !== 'all' ? { block: { number: Number(block2w) } } : undefined)
+  const pairs = useCampPairs()
+  const pairs1d = useCampPairs({ block: { number: Number(block1d) } })
+  const pairs2d = useCampPairs(type !== 'all' ? { block: { number: Number(block2d) } } : undefined) // No need to fetch if we don't need the data
+  const pairs1w = useCampPairs({ block: { number: Number(block1w) } })
+  const pairs2w = useCampPairs(type !== 'all' ? { block: { number: Number(block2w) } } : undefined)
 
   const pairsFormatted =
     type === 'all'
@@ -101,8 +101,8 @@ export default function Pairs() {
   return (
     <>
       <Head>
-        <title>SushiSwap Liquidity Pair (SLP) Analytics | Sushi</title>
-        <meta name="description" content="SushiSwap Liquidity Pair (SLP) Analytics by Sushi" />
+        <title>CampSwap Liquidity Pair (SLP) Analytics | Camp</title>
+        <meta name="description" content="CampSwap Liquidity Pair (SLP) Analytics by Camp" />
       </Head>
 
       <Container maxWidth="full" className="grid h-full grid-flow-col grid-cols-5 mx-auto gap-9">

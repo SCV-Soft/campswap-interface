@@ -363,7 +363,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "meowSushi",
+		"name": "meowCamp",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -603,7 +603,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "unmeowSushi",
+		"name": "unmeowCamp",
 		"outputs": [
 			{
 				"internalType": "uint256",

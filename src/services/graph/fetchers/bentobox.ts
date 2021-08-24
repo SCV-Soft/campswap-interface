@@ -6,11 +6,11 @@ import { kashiPairsQuery } from '../queries/bentobox'
 import { request } from 'graphql-request'
 
 export const BENTOBOX = {
-  [ChainId.MAINNET]: 'sushiswap/bentobox',
-  [ChainId.XDAI]: 'sushiswap/xdai-bentobox',
-  [ChainId.MATIC]: 'sushiswap/matic-bentobox',
-  [ChainId.FANTOM]: 'sushiswap/fantom-bentobox',
-  [ChainId.BSC]: 'sushiswap/bsc-bentobox',
+  [ChainId.MAINNET]: 'campswap/bentobox',
+  [ChainId.XDAI]: 'campswap/xdai-bentobox',
+  [ChainId.MATIC]: 'campswap/matic-bentobox',
+  [ChainId.FANTOM]: 'campswap/fantom-bentobox',
+  [ChainId.BSC]: 'campswap/bsc-bentobox',
 }
 export const fetcher = async (chainId = ChainId.MAINNET, query, variables) =>
   request(`${GRAPH_HOST[chainId]}/subgraphs/name/${BENTOBOX[chainId]}`, query)

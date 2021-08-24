@@ -1,7 +1,7 @@
 import {
   getMasterChefV1Farms,
   getMasterChefV1PairAddreses,
-  getMasterChefV1SushiPerBlock,
+  getMasterChefV1CampPerBlock,
   getMasterChefV1TotalAllocPoint,
   getMasterChefV2Farms,
   getMasterChefV2PairAddreses,
@@ -31,12 +31,12 @@ export function useMasterChefV1TotalAllocPoint(swrConfig = undefined) {
   return data
 }
 
-export function useMasterChefV1SushiPerBlock(swrConfig = undefined) {
+export function useMasterChefV1CampPerBlock(swrConfig = undefined) {
   const { chainId } = useActiveWeb3React()
   const shouldFetch = chainId && chainId === ChainId.MAINNET
   const { data } = useSWR(
-    shouldFetch ? 'masterChefV1SushiPerBlock' : null,
-    () => getMasterChefV1SushiPerBlock(),
+    shouldFetch ? 'masterChefV1CampPerBlock' : null,
+    () => getMasterChefV1CampPerBlock(),
     swrConfig
   )
   return data

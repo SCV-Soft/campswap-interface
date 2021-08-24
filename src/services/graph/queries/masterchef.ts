@@ -7,12 +7,12 @@ export const poolsQuery = gql`
       pair
       allocPoint
       lastRewardBlock
-      accSushiPerShare
+      accCampPerShare
       balance
       userCount
       owner {
         id
-        sushiPerBlock
+        campPerBlock
         totalAllocPoint
       }
     }
@@ -29,7 +29,7 @@ export const masterChefV1PairAddressesQuery = gql`
     pools(first: $first, skip: $skip, orderBy: $orderBy, orderDirection: $orderDirection) {
       id
       allocPoint
-      accSushiPerShare
+      accCampPerShare
       pair {
         id
       }
@@ -46,11 +46,11 @@ export const masterChefV1TotalAllocPointQuery = gql`
   }
 `
 
-export const masterChefV1SushiPerBlockQuery = gql`
-  query masterChefV1SushiPerBlock($id: String! = "0xc2edad668740f1aa35e4d8f227fb8e17dca888cd") {
+export const masterChefV1CampPerBlockQuery = gql`
+  query masterChefV1CampPerBlock($id: String! = "0xc2edad668740f1aa35e4d8f227fb8e17dca888cd") {
     masterChef(id: $id) {
       id
-      sushiPerBlock
+      campPerBlock
     }
   }
 `

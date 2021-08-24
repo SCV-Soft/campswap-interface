@@ -52,14 +52,14 @@ export const ARCHER_GAS_URI: { [chainId in ChainId]?: string } = {
 
 // TODO: update weekly with new constant
 export const MERKLE_ROOT =
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-13/merkle-10959148-11550728.json'
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-14/merkle-10959148-11596364.json'
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-15/merkle-10959148-11641996.json'
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-16/merkle-10959148-11687577.json'
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-17/merkle-10959148-11733182.json'
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-18/merkle-10959148-11778625.json'
-  //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-19/merkle-10959148-11824101.json'
-  'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-20/merkle-10959148-11869658.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-13/merkle-10959148-11550728.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-14/merkle-10959148-11596364.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-15/merkle-10959148-11641996.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-16/merkle-10959148-11687577.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-17/merkle-10959148-11733182.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-18/merkle-10959148-11778625.json'
+  //'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-19/merkle-10959148-11824101.json'
+  'https://raw.githubusercontent.com/campswap/camp-vesting/master/merkle/week-20/merkle-10959148-11869658.json'
 
 // /**
 //  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
@@ -78,7 +78,7 @@ export const MERKLE_ROOT =
 //         [PONT.address]: [PWING, WETH[ChainId.MAINNET]],
 //         [UMA_CALL.address]: [UMA, WETH[ChainId.MAINNET]],
 //         [PLAY.address]: [DOUGH, WETH[ChainId.MAINNET]],
-//         [XSUSHI_CALL.address]: [XSUSHI, WETH[ChainId.MAINNET]],
+//         [XCAMP_CALL.address]: [XCAMP, WETH[ChainId.MAINNET]],
 //     },
 // }
 
@@ -142,7 +142,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
       return new LatticeConnector({
         chainId: 1,
         url: RPC[ChainId.MAINNET],
-        appName: 'SushiSwap',
+        appName: 'CampSwap',
       })
     },
     name: 'Lattice',
@@ -274,12 +274,12 @@ export const BASE_SWAPPER: { [chainId in ChainId]?: string } = {
 // export const BORING_HELPER_ADDRESS = '0x11Ca5375AdAfd6205E41131A4409f182677996E6'
 
 export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
-  [ChainId.MAINNET]: 'https://analytics.sushi.com',
-  [ChainId.MATIC]: 'https://analytics-polygon.sushi.com',
-  [ChainId.FANTOM]: 'https://analytics-ftm.sushi.com',
-  [ChainId.BSC]: 'https://analytics-bsc.sushi.com',
-  [ChainId.XDAI]: 'https://analytics-xdai.sushi.com',
-  [ChainId.HARMONY]: 'https://analytics-harmony.sushi.com',
+  [ChainId.MAINNET]: 'https://analytics.camp.com',
+  [ChainId.MATIC]: 'https://analytics-polygon.camp.com',
+  [ChainId.FANTOM]: 'https://analytics-ftm.camp.com',
+  [ChainId.BSC]: 'https://analytics-bsc.camp.com',
+  [ChainId.XDAI]: 'https://analytics-xdai.camp.com',
+  [ChainId.HARMONY]: 'https://analytics-harmony.camp.com',
   [ChainId.ARBITRUM]: undefined,
 }
 

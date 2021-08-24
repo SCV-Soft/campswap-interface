@@ -17,7 +17,7 @@ const Rinkeby = '/images/networks/rinkeby-network.jpg'
 const Ropsten = '/images/networks/ropsten-network.jpg'
 const xDai = '/images/networks/xdai-network.jpg'
 const Celo = '/images/networks/celo-network.jpg'
-const Palm = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/palm.jpg'
+const Palm = 'https://raw.githubusercontent.com/campswap/icons/master/network/palm.jpg'
 
 export const NETWORK_ICON = {
   [ChainId.MAINNET]: Mainnet,

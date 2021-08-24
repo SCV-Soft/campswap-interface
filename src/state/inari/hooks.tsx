@@ -1,11 +1,11 @@
 import { useAppSelector } from '../hooks'
 import { Token } from '@sushiswap/sdk'
 import { tryParseAmount } from '../../functions'
-import useStakeSushiToBentoStrategy from './strategies/useStakeSushiToBentoStrategy'
+import useStakeCampToBentoStrategy from './strategies/useStakeCampToBentoStrategy'
 import { DerivedInariState, InariState } from './types'
-import useStakeSushiToCreamStrategy from './strategies/useStakeSushiToCreamStrategy'
-import useStakeSushiToCreamToBentoStrategy from './strategies/useStakeSushiToCreamToBentoStrategy'
-import useStakeSushiToAaveStrategy from './strategies/useStakeSushiToAaveStrategy'
+import useStakeCampToCreamStrategy from './strategies/useStakeCampToCreamStrategy'
+import useStakeCampToCreamToBentoStrategy from './strategies/useStakeCampToCreamToBentoStrategy'
+import useStakeCampToAaveStrategy from './strategies/useStakeCampToAaveStrategy'
 import { useMemo } from 'react'
 
 export function useInariState(): InariState {
@@ -64,18 +64,18 @@ export function useSelectedInariStrategy() {
 
 // Use this hook to register all strategies
 export function useInariStrategies() {
-  const stakeSushiToBentoStrategy = useStakeSushiToBentoStrategy()
-  const stakeSushiToCreamStrategy = useStakeSushiToCreamStrategy()
-  // const stakeSushiToCreamToBentoStrategy = useStakeSushiToCreamToBentoStrategy()
-  const stakeSushiToAaveStrategy = useStakeSushiToAaveStrategy()
+  const stakeCampToBentoStrategy = useStakeCampToBentoStrategy()
+  const stakeCampToCreamStrategy = useStakeCampToCreamStrategy()
+  // const stakeCampToCreamToBentoStrategy = useStakeCampToCreamToBentoStrategy()
+  const stakeCampToAaveStrategy = useStakeCampToAaveStrategy()
 
   return useMemo(
     () => ({
-      [stakeSushiToBentoStrategy.id]: stakeSushiToBentoStrategy,
-      [stakeSushiToCreamStrategy.id]: stakeSushiToCreamStrategy,
-      // [stakeSushiToCreamToBentoStrategy.id]: stakeSushiToCreamToBentoStrategy,
-      [stakeSushiToAaveStrategy.id]: stakeSushiToAaveStrategy,
+      [stakeCampToBentoStrategy.id]: stakeCampToBentoStrategy,
+      [stakeCampToCreamStrategy.id]: stakeCampToCreamStrategy,
+      // [stakeCampToCreamToBentoStrategy.id]: stakeCampToCreamToBentoStrategy,
+      [stakeCampToAaveStrategy.id]: stakeCampToAaveStrategy,
     }),
-    [stakeSushiToAaveStrategy, stakeSushiToBentoStrategy, stakeSushiToCreamStrategy]
+    [stakeCampToAaveStrategy, stakeCampToBentoStrategy, stakeCampToCreamStrategy]
   )
 }

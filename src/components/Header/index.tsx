@@ -1,4 +1,4 @@
-import { ChainId, Currency, NATIVE, SUSHI_ADDRESS } from '@sushiswap/sdk'
+import { ChainId, Currency, NATIVE, CAMP_ADDRESS } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
 
 import { ANALYTICS_URL } from '../../constants'
@@ -36,7 +36,7 @@ function AppBar(): JSX.Element {
             <div className="px-4 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <Image src="/logo.png" alt="Sushi" width="32px" height="32px" />
+                  <Image src="/logo.png" alt="Camp" width="32px" height="32px" />
                   <div className="hidden sm:block sm:ml-4">
                     <div className="flex space-x-2">
                       {/* <Buy /> */}
@@ -127,7 +127,7 @@ function AppBar(): JSX.Element {
                   <div className="flex items-center justify-between w-full space-x-2 sm:justify-end">
                     {chainId && [ChainId.MAINNET].includes(chainId) && library && library.provider.isMetaMask && (
                       <>
-                        <QuestionHelper text={i18n._(t`Add xSUSHI to your MetaMask wallet`)}>
+                        <QuestionHelper text={i18n._(t`Add xCAMP to your MetaMask wallet`)}>
                           <div
                             className="hidden p-0.5 rounded-md cursor-pointer sm:inline-flex bg-dark-900 hover:bg-dark-800"
                             onClick={() => {
@@ -136,10 +136,10 @@ function AppBar(): JSX.Element {
                                   type: 'ERC20',
                                   options: {
                                     address: '0x8798249c2e607446efb7ad49ec89dd1865ff4272',
-                                    symbol: 'XSUSHI',
+                                    symbol: 'XCAMP',
                                     decimals: 18,
                                     image:
-                                      'https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272/logo.png',
+                                      'https://raw.githubusercontent.com/campswap/assets/master/blockchains/ethereum/assets/0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272/logo.png',
                                   },
                                 }
                                 library.provider
@@ -149,7 +149,7 @@ function AppBar(): JSX.Element {
                                   })
                                   .then((success) => {
                                     if (success) {
-                                      console.log('Successfully added XSUSHI to MetaMask')
+                                      console.log('Successfully added XCAMP to MetaMask')
                                     } else {
                                       throw new Error('Something went wrong.')
                                     }
@@ -159,8 +159,8 @@ function AppBar(): JSX.Element {
                             }}
                           >
                             <Image
-                              src="/images/tokens/xsushi-square.jpg"
-                              alt="xSUSHI"
+                              src="/images/tokens/xcamp-square.jpg"
+                              alt="xCAMP"
                               width="38px"
                               height="38px"
                               objectFit="contain"
@@ -171,20 +171,20 @@ function AppBar(): JSX.Element {
                       </>
                     )}
 
-                    {chainId && chainId in SUSHI_ADDRESS && library && library.provider.isMetaMask && (
+                    {chainId && chainId in CAMP_ADDRESS && library && library.provider.isMetaMask && (
                       <>
-                        <QuestionHelper text={i18n._(t`Add SUSHI to your MetaMask wallet`)}>
+                        <QuestionHelper text={i18n._(t`Add CAMP to your MetaMask wallet`)}>
                           <div
                             className="hidden rounded-md cursor-pointer sm:inline-flex bg-dark-900 hover:bg-dark-800 p-0.5"
                             onClick={() => {
                               const params: any = {
                                 type: 'ERC20',
                                 options: {
-                                  address: SUSHI_ADDRESS[chainId],
-                                  symbol: 'SUSHI',
+                                  address: CAMP_ADDRESS[chainId],
+                                  symbol: 'CAMP',
                                   decimals: 18,
                                   image:
-                                    'https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2/logo.png',
+                                    'https://raw.githubusercontent.com/campswap/assets/master/blockchains/ethereum/assets/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2/logo.png',
                                 },
                               }
                               if (library && library.provider.isMetaMask && library.provider.request) {
@@ -195,7 +195,7 @@ function AppBar(): JSX.Element {
                                   })
                                   .then((success) => {
                                     if (success) {
-                                      console.log('Successfully added SUSHI to MetaMask')
+                                      console.log('Successfully added CAMP to MetaMask')
                                     } else {
                                       throw new Error('Something went wrong.')
                                     }
@@ -205,8 +205,8 @@ function AppBar(): JSX.Element {
                             }}
                           >
                             <Image
-                              src="/images/tokens/sushi-square.jpg"
-                              alt="SUSHI"
+                              src="/images/tokens/camp-square.jpg"
+                              alt="CAMP"
                               width="38px"
                               height="38px"
                               objectFit="contain"
@@ -352,7 +352,7 @@ function AppBar(): JSX.Element {
                   [ChainId.MAINNET, ChainId.BSC, ChainId.XDAI, ChainId.FANTOM, ChainId.MATIC].includes(chainId) && (
                     <ExternalLink
                       id={`analytics-nav-link`}
-                      href={ANALYTICS_URL[chainId] || 'https://analytics.sushi.com'}
+                      href={ANALYTICS_URL[chainId] || 'https://analytics.camp.com'}
                       className="p-2 text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis md:p-3 whitespace-nowrap"
                     >
                       {i18n._(t`Analytics`)}

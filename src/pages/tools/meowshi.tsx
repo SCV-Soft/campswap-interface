@@ -1,6 +1,6 @@
 import { ArrowDownIcon, InformationCircleIcon } from '@heroicons/react/solid'
 import { ChainId, Currency, Token } from '@sushiswap/sdk'
-import { MEOW, SUSHI, XSUSHI } from '../../constants'
+import { MEOW, CAMP, XCAMP } from '../../constants'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import Container from '../../components/Container'
@@ -14,8 +14,8 @@ import Typography from '../../components/Typography'
 import { e10 } from '../../functions'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import useMeowshiPerXSushi from '../../hooks/useMeowshiPerXSushi'
-import useSushiPerXSushi from '../../hooks/useXSushiPerSushi'
+import useMeowshiPerXCamp from '../../hooks/useMeowshiPerXCamp'
+import useCampPerXCamp from '../../hooks/useXCampPerCamp'
 
 export enum Field {
   INPUT = 'INPUT',
@@ -40,8 +40,8 @@ export interface MeowshiState {
 
 export default function Meowshi() {
   const { i18n } = useLingui()
-  const sushiPerXSushi = useSushiPerXSushi()
-  const [meowshiPerXSushi, xSushiPerMeowshi] = useMeowshiPerXSushi()
+  const campPerXCamp = useCampPerXCamp()
+  const [meowshiPerXCamp, xCampPerMeowshi] = useMeowshiPerXCamp()
 
   const [fields, setFields] = useState({
     independentField: Field.INPUT,
@@ -50,7 +50,7 @@ export default function Meowshi() {
   })
 
   const [currencies, setCurrencies] = useState({
-    [Field.INPUT]: SUSHI[ChainId.MAINNET],
+    [Field.INPUT]: CAMP[ChainId.MAINNET],
     [Field.OUTPUT]: MEOW,
   })
 
@@ -58,13 +58,13 @@ export default function Meowshi() {
     async (val, field) => {
       setFields((prevState) => {
         const inputRate =
-          currencies[Field.INPUT] === XSUSHI
-            ? meowshiPerXSushi.mul(e10(5))
-            : meowshiPerXSushi.mul(e10(5)).mulDiv(e10(18), sushiPerXSushi.toString().toBigNumber(18))
+          currencies[Field.INPUT] === XCAMP
+            ? meowshiPerXCamp.mul(e10(5))
+            : meowshiPerXCamp.mul(e10(5)).mulDiv(e10(18), campPerXCamp.toString().toBigNumber(18))
         const outputRate =
-          currencies[Field.OUTPUT] === XSUSHI
-            ? xSushiPerMeowshi.div(e10(5))
-            : xSushiPerMeowshi.mulDiv(sushiPerXSushi.toString().toBigNumber(18), e10(18)).div(e10(5))
+          currencies[Field.OUTPUT] === XCAMP
+            ? xCampPerMeowshi.div(e10(5))
+            : xCampPerMeowshi.mulDiv(campPerXCamp.toString().toBigNumber(18), e10(18)).div(e10(5))
 
         if (field === Field.INPUT) {
           if (currencies[Field.OUTPUT] === MEOW) {
@@ -97,7 +97,7 @@ export default function Meowshi() {
         }
       })
     },
-    [currencies, meowshiPerXSushi, sushiPerXSushi, xSushiPerMeowshi]
+    [currencies, meowshiPerXCamp, campPerXCamp, xCampPerMeowshi]
   )
 
   const setCurrency = useCallback((currency: Currency, field: Field) => {
@@ -133,8 +133,8 @@ export default function Meowshi() {
   return (
     <Container id="meowshi-page" className="py-4 md:py-8 lg:py-12" maxWidth="2xl">
       <Head>
-        <title>Meowshi | Sushi</title>
-        <meta key="description" name="description" content="SushiSwap Meowshi..." />
+        <title>Meowshi | Camp</title>
+        <meta key="description" name="description" content="CampSwap Meowshi..." />
       </Head>
 
       <div className="z-0 relative mb-[-38px] md:mb-[-54px] ml-0 md:ml-4 flex justify-between gap-6 items-center">
@@ -145,7 +145,7 @@ export default function Meowshi() {
         <div className="bg-[rgba(255,255,255,0.04)] p-4 py-2 rounded flex flex-row items-center gap-4 mb-[54px]">
           <InformationCircleIcon width={48} height={48} color="pink" />
           <Typography variant="xs" weight={700}>
-            {i18n._(t`MEOW tokens wrap xSUSHI into BentoBox for double yields and can be
+            {i18n._(t`MEOW tokens wrap xCAMP into BentoBox for double yields and can be
               used to vote in special MEOW governor contracts.`)}
           </Typography>
         </div>
@@ -162,9 +162,9 @@ export default function Meowshi() {
           </div>
           <Typography variant="sm" className="text-secondary ml-[26px]">
             {currencies[Field.INPUT]?.symbol} →{' '}
-            {(currencies[Field.INPUT] === SUSHI[ChainId.MAINNET] ||
-              currencies[Field.OUTPUT] === SUSHI[ChainId.MAINNET]) &&
-              ' xSUSHI → '}
+            {(currencies[Field.INPUT] === CAMP[ChainId.MAINNET] ||
+              currencies[Field.OUTPUT] === CAMP[ChainId.MAINNET]) &&
+              ' xCAMP → '}
             {currencies[Field.OUTPUT]?.symbol}
           </Typography>
         </div>

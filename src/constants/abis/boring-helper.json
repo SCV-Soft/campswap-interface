@@ -3,10 +3,10 @@
     "inputs": [
       { "internalType": "contract IMasterChef", "name": "chef_", "type": "address" },
       { "internalType": "address", "name": "maker_", "type": "address" },
-      { "internalType": "contract IERC20", "name": "sushi_", "type": "address" },
+      { "internalType": "contract IERC20", "name": "camp_", "type": "address" },
       { "internalType": "contract IERC20", "name": "WETH_", "type": "address" },
       { "internalType": "contract IERC20", "name": "WBTC_", "type": "address" },
-      { "internalType": "contract IFactory", "name": "sushiFactory_", "type": "address" },
+      { "internalType": "contract IFactory", "name": "campFactory_", "type": "address" },
       { "internalType": "contract IFactory", "name": "uniV2Factory_", "type": "address" },
       { "internalType": "contract IERC20", "name": "bar_", "type": "address" },
       { "internalType": "contract IBentoBox", "name": "bentoBox_", "type": "address" }
@@ -213,11 +213,11 @@
       {
         "components": [
           { "internalType": "uint256", "name": "ethBalance", "type": "uint256" },
-          { "internalType": "uint256", "name": "sushiBalance", "type": "uint256" },
-          { "internalType": "uint256", "name": "sushiBarBalance", "type": "uint256" },
-          { "internalType": "uint256", "name": "xsushiBalance", "type": "uint256" },
-          { "internalType": "uint256", "name": "xsushiSupply", "type": "uint256" },
-          { "internalType": "uint256", "name": "sushiBarAllowance", "type": "uint256" },
+          { "internalType": "uint256", "name": "campBalance", "type": "uint256" },
+          { "internalType": "uint256", "name": "campBarBalance", "type": "uint256" },
+          { "internalType": "uint256", "name": "xcampBalance", "type": "uint256" },
+          { "internalType": "uint256", "name": "xcampSupply", "type": "uint256" },
+          { "internalType": "uint256", "name": "campBarAllowance", "type": "uint256" },
           {
             "components": [
               { "internalType": "contract IFactory", "name": "factory", "type": "address" },
@@ -228,9 +228,9 @@
             "type": "tuple[]"
           },
           { "internalType": "uint256", "name": "ethRate", "type": "uint256" },
-          { "internalType": "uint256", "name": "sushiRate", "type": "uint256" },
+          { "internalType": "uint256", "name": "campRate", "type": "uint256" },
           { "internalType": "uint256", "name": "btcRate", "type": "uint256" },
-          { "internalType": "uint256", "name": "pendingSushi", "type": "uint256" },
+          { "internalType": "uint256", "name": "pendingCamp", "type": "uint256" },
           { "internalType": "uint256", "name": "blockTimeStamp", "type": "uint256" },
           { "internalType": "bool[]", "name": "masterContractApproved", "type": "bool[]" }
         ],
@@ -368,10 +368,10 @@
     "inputs": [
       { "internalType": "contract IMasterChef", "name": "chef_", "type": "address" },
       { "internalType": "address", "name": "maker_", "type": "address" },
-      { "internalType": "contract IERC20", "name": "sushi_", "type": "address" },
+      { "internalType": "contract IERC20", "name": "camp_", "type": "address" },
       { "internalType": "contract IERC20", "name": "WETH_", "type": "address" },
       { "internalType": "contract IERC20", "name": "WBTC_", "type": "address" },
-      { "internalType": "contract IFactory", "name": "sushiFactory_", "type": "address" },
+      { "internalType": "contract IFactory", "name": "campFactory_", "type": "address" },
       { "internalType": "contract IFactory", "name": "uniV2Factory_", "type": "address" },
       { "internalType": "contract IERC20", "name": "bar_", "type": "address" },
       { "internalType": "contract IBentoBox", "name": "bentoBox_", "type": "address" }
@@ -383,14 +383,14 @@
   },
   {
     "inputs": [],
-    "name": "sushi",
+    "name": "camp",
     "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "sushiFactory",
+    "name": "campFactory",
     "outputs": [{ "internalType": "contract IFactory", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"

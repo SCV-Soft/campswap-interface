@@ -316,11 +316,11 @@ export default function Add() {
   return (
     <>
       <Head>
-        <title>Add Liquidity | Sushi</title>
+        <title>Add Liquidity | Camp</title>
         <meta
           key="description"
           name="description"
-          content="Add liquidity to the SushiSwap AMM to enable gas optimised and low slippage trades across countless networks"
+          content="Add liquidity to the CampSwap AMM to enable gas optimised and low slippage trades across countless networks"
         />
       </Head>
 

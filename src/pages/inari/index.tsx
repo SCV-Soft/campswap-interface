@@ -27,7 +27,7 @@ const Inari = () => {
   return (
     <>
       <Head>
-        <title>Inari | Sushi</title>
+        <title>Inari | Camp</title>
         <meta name="description" content="Inari..." />
       </Head>
       <Container maxWidth="5xl" className="flex flex-col gap-8 py-8 px-4">
@@ -40,7 +40,7 @@ const Inari = () => {
               {i18n._(t`One-Click Strategies`)}
             </Typography>
             <Typography>
-              {i18n._(t`Take your SUSHI and invest in various strategies with one click! Earn extra yields with BentoBox, use as
+              {i18n._(t`Take your CAMP and invest in various strategies with one click! Earn extra yields with BentoBox, use as
               collateral on other platforms, and more!`)}
             </Typography>
           </div>

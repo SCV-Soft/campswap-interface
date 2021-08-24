@@ -70,7 +70,7 @@ export default function Vesting() {
   useEffect(() => {
     const fetchLockup = async () => {
       if (account) {
-        fetch('https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/amounts-10959148-12171394.json')
+        fetch('https://raw.githubusercontent.com/campswap/camp-vesting/master/amounts-10959148-12171394.json')
           .then((response) => response.json())
           .then((data) => {
             // console.log('vesting:', data)
@@ -93,18 +93,18 @@ export default function Vesting() {
 
   let vault = ''
   if (!pendingTreasurySignature && Number(unclaimedAmount?.toFixed(8)) > 0) {
-    vault = 'https://raw.githubusercontent.com/sushiswap/sushi-content/master/images/sushi-vault-reverse.png'
+    vault = 'https://raw.githubusercontent.com/campswap/camp-content/master/images/camp-vault-reverse.png'
   } else if (!pendingTreasurySignature && Number(unclaimedAmount?.toFixed(8)) <= 0) {
-    vault = 'https://raw.githubusercontent.com/sushiswap/sushi-content/master/images/vesting-safe-off.png'
+    vault = 'https://raw.githubusercontent.com/campswap/camp-content/master/images/vesting-safe-off.png'
   } else if (pendingTreasurySignature) {
-    vault = 'https://raw.githubusercontent.com/sushiswap/sushi-content/master/images/vesting-safe-closed.png'
+    vault = 'https://raw.githubusercontent.com/campswap/camp-content/master/images/vesting-safe-closed.png'
   }
 
   return (
     <Container id="vesting-page" className="py-4 md:py-8 lg:py-12 m-auto w-full max-w-[900px]">
       <Head>
-        <title>Vesting | Sushi</title>
-        <meta key="description" name="description" content="SushiSwap vesting..." />
+        <title>Vesting | Camp</title>
+        <meta key="description" name="description" content="CampSwap vesting..." />
       </Head>
       <div className="flex px-0 sm:px-4 md:flex-row md:space-x-10 lg:space-x-20 md:px-10">
         <div className="hidden space-y-10 md:block">
@@ -120,21 +120,21 @@ export default function Vesting() {
             >
               <>
                 {i18n._(t`Vesting is executed within the guidelines selected by the community in`)}{' '}
-                <ExternalLink href="https://snapshot.org/#/sushi/proposal/QmPwBGy98NARoEcUfuWPgzMdJdiaZub1gVic67DcSs6NZQ">
+                <ExternalLink href="https://snapshot.org/#/camp/proposal/QmPwBGy98NARoEcUfuWPgzMdJdiaZub1gVic67DcSs6NZQ">
                   SIMP3
                 </ExternalLink>
                 .
                 <br />
                 <br />
                 {i18n._(t`Please refer to the`)}{' '}
-                <ExternalLink href="https://forum.sushiswapclassic.org/t/simp-3-vesting-and-the-future-of-sushiswap/1794">
+                <ExternalLink href="https://forum.campswapclassic.org/t/simp-3-vesting-and-the-future-of-campswap/1794">
                   {i18n._(t`forum discussion`)}
                 </ExternalLink>{' '}
                 {i18n._(t`for deliberations on additional points.`)}
                 <br />
                 <br />
                 {i18n._(t`Additional records and weekly merkle updates can be found on`)}{' '}
-                <ExternalLink href="https://github.com/sushiswap/sushi-vesting">Github</ExternalLink>
+                <ExternalLink href="https://github.com/campswap/camp-vesting">Github</ExternalLink>
               </>
             </div>
           </div>
@@ -143,8 +143,8 @@ export default function Vesting() {
           <div className="relative w-full overflow-hidden rounded bg-dark-900">
             <div className="flex flex-col gap-3 p-4">
               <div className="flex flex-row justify-between">
-                <div className="font-bold text-white">{i18n._(t`Your Claimable SUSHI this Week`)}</div>
-                <QuestionHelper text="Your Vested SUSHI will be released each week for the next 6 months. The amount released each week is determined by your historical farming rewards. You do not need to harvest each week as unclaimed amounts from each week will continue to accrue onto the next." />
+                <div className="font-bold text-white">{i18n._(t`Your Claimable CAMP this Week`)}</div>
+                <QuestionHelper text="Your Vested CAMP will be released each week for the next 6 months. The amount released each week is determined by your historical farming rewards. You do not need to harvest each week as unclaimed amounts from each week will continue to accrue onto the next." />
               </div>
               {/* <div style={{ display: 'flex', alignItems: 'baseline' }}> */}
               <div className="flex flex-col items-baseline">
@@ -154,7 +154,7 @@ export default function Vesting() {
                 {account ? (
                   <div className="text-sm text-secondary">
                     {totalLocked ? (
-                      i18n._(t`Historical Total Locked: ${formatNumber(totalLocked)} SUSHI`)
+                      i18n._(t`Historical Total Locked: ${formatNumber(totalLocked)} CAMP`)
                     ) : (
                       <Dots>{i18n._(t`Historical Total Locked: Fetching Total`)}</Dots>
                     )}
@@ -180,7 +180,7 @@ export default function Vesting() {
                 {pendingTreasurySignature ? (
                   <Dots>{i18n._(t`Pending Treasury Transfer`)}</Dots>
                 ) : (
-                  <> {claimConfirmed ? i18n._(t`Claimed`) : i18n._(t`Claim SUSHI`)}</>
+                  <> {claimConfirmed ? i18n._(t`Claimed`) : i18n._(t`Claim CAMP`)}</>
                 )}
 
                 {attempting && (
@@ -196,14 +196,14 @@ export default function Vesting() {
           </div>
           <div className="relative w-full overflow-hidden rounded bg-dark-900">
             <div className="flex flex-col gap-3 p-4">
-              <div className="font-bold text-white">{i18n._(t`Things you can do with your SUSHI`)}</div>
+              <div className="font-bold text-white">{i18n._(t`Things you can do with your CAMP`)}</div>
               <div className="p-4 rounded bg-dark-800">
                 <Link href="/stake">
                   <a className="flex items-center justify-between gap-3">
                     <div className="flex flex-col gap-1">
-                      <div className="font-bold text-white">{i18n._(t`Stake SUSHI for xSUSHI`)}</div>
+                      <div className="font-bold text-white">{i18n._(t`Stake CAMP for xCAMP`)}</div>
                       <div className="text-sm text-secondary">
-                        {t`Gain governance rights with xSUSHI and earn 5% APR (0.05% of
+                        {t`Gain governance rights with xCAMP and earn 5% APR (0.05% of
                                                             all swaps from all chains)`}
                       </div>
                     </div>
@@ -219,7 +219,7 @@ export default function Vesting() {
                     <div className="flex flex-col gap-1">
                       <div className="font-bold text-white">{i18n._(t`Stack Yields with SAAVE`)}</div>
                       <div className="text-sm text-secondary">
-                        {t`Stake into xSUSHI add collateral as axSUSHI on Aave all in
+                        {t`Stake into xCAMP add collateral as axCAMP on Aave all in
                                                             one click`}
                       </div>
                     </div>
@@ -231,10 +231,10 @@ export default function Vesting() {
               </div>
               <div className="p-4 rounded bg-dark-800">
                 <div className="flex flex-col gap-1">
-                  <div className="font-bold text-white">{i18n._(t`Deposit SUSHI into BentoBox`)}</div>
+                  <div className="font-bold text-white">{i18n._(t`Deposit CAMP into BentoBox`)}</div>
                   <div className="text-sm text-secondary">
                     {t`(COMING SOON) Accrue automatic yield through flash loans and
-                                                            SUSHI strategies`}
+                                                            CAMP strategies`}
                   </div>
                 </div>
               </div>

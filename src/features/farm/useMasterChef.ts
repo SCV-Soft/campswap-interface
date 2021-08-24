@@ -1,4 +1,4 @@
-import { useActiveWeb3React, useSushiContract } from '../../hooks'
+import { useActiveWeb3React, useCampContract } from '../../hooks'
 
 import { BigNumber } from '@ethersproject/bignumber'
 import { Chef } from './enum'
@@ -9,7 +9,7 @@ import { useChefContract } from './hooks'
 export default function useMasterChef(chef: Chef) {
   const { account } = useActiveWeb3React()
 
-  const sushi = useSushiContract()
+  const camp = useCampContract()
 
   const contract = useChefContract(chef)
 
@@ -63,12 +63,12 @@ export default function useMasterChef(chef: Chef) {
         if (chef === Chef.MASTERCHEF) {
           tx = await contract?.deposit(pid, Zero)
         } else if (chef === Chef.MASTERCHEF_V2) {
-          const pendingSushi = await contract?.pendingSushi(pid, account)
+          const pendingCamp = await contract?.pendingCamp(pid, account)
 
-          const balanceOf = await sushi?.balanceOf(contract?.address)
+          const balanceOf = await camp?.balanceOf(contract?.address)
 
-          // If MasterChefV2 doesn't have enough sushi to harvest, batch in a harvest.
-          if (pendingSushi.gt(balanceOf)) {
+          // If MasterChefV2 doesn't have enough camp to harvest, batch in a harvest.
+          if (pendingCamp.gt(balanceOf)) {
             tx = await contract?.batch(
               [
                 contract?.interface?.encodeFunctionData('harvestFromMasterChef'),
@@ -89,7 +89,7 @@ export default function useMasterChef(chef: Chef) {
         return e
       }
     },
-    [account, chef, contract, sushi]
+    [account, chef, contract, camp]
   )
 
   return { deposit, withdraw, harvest }

@@ -102,7 +102,7 @@ function MisoInfo({
         <div className="col-span-4 flex flex-col">
           <div className="mx-auto">
             <div className="text-sm sm:text-lg">{'MIN Raised'}</div>
-            <div className="text-base md:text-xl font-bold text-white">{`${minRaised} $SUSHI`}</div>
+            <div className="text-base md:text-xl font-bold text-white">{`${minRaised} $CAMP`}</div>
             <div className="text-sm sm:text-base">{`$${minRaisedUsd} USD`}</div>
           </div>
         </div>
@@ -127,7 +127,7 @@ function MisoInfo({
         </div>
         <div className="ml-5 md:ml-8 cursor-pointer">
           <a
-            href="https://miso.sushi.com/auctions/0x15c5E87Ce788F0dEBcAF70cF1dde69E3Bc3E6Ad1"
+            href="https://miso.camp.com/auctions/0x15c5E87Ce788F0dEBcAF70cF1dde69E3Bc3E6Ad1"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -138,7 +138,7 @@ function MisoInfo({
       <div className="flex flex-col mt-6">
         <div>About</div>
         <div>
-          The Trident NFT is introduced as a celebratory piece for the announcement and upcoming release of Sushi’s
+          The Trident NFT is introduced as a celebratory piece for the announcement and upcoming release of Camp’s
           Trident AMM. This NFT can be redeemed for a 19cm x 19cm 900 tab piece of blotter paper with this Chewy Stoll
           artwork on the left printed on it.
         </div>

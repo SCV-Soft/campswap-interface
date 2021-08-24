@@ -10,7 +10,7 @@ import {
   MAKER_ADDRESS,
   MASTERCHEF_ADDRESS,
   ROUTER_ADDRESS,
-  SUSHI_ADDRESS,
+  CAMP_ADDRESS,
   TIMELOCK_ADDRESS,
   WNATIVE,
 } from '@sushiswap/sdk'
@@ -19,11 +19,11 @@ import {
   BORING_HELPER_ADDRESS,
   CHAINLINK_ORACLE_ADDRESS,
   KASHI_ADDRESS,
-  SUSHISWAP_SWAPPER_ADDRESS,
-  SUSHISWAP_TWAP_0_ORACLE_ADDRESS,
-  SUSHISWAP_TWAP_1_ORACLE_ADDRESS,
+  CAMPSWAP_SWAPPER_ADDRESS,
+  CAMPSWAP_TWAP_0_ORACLE_ADDRESS,
+  CAMPSWAP_TWAP_1_ORACLE_ADDRESS,
 } from '../constants/kashi'
-import { MERKLE_DISTRIBUTOR_ADDRESS, SUSHI } from '../constants'
+import { MERKLE_DISTRIBUTOR_ADDRESS, CAMP } from '../constants'
 
 import ALCX_REWARDER_ABI from '../constants/abis/alcx-rewarder.json'
 import ARCHER_ROUTER_ABI from '../constants/abis/archer-router.json'
@@ -57,9 +57,9 @@ import MULTICALL2_ABI from '../constants/abis/multicall2.json'
 import PENDING_ABI from '../constants/abis/pending.json'
 import ROUTER_ABI from '../constants/abis/router.json'
 import SAAVE_ABI from '../constants/abis/saave.json'
-import SUSHIROLL_ABI from '@sushiswap/core/abi/SushiRoll.json'
-import SUSHISWAP_TWAP_ORACLE_ABI from '../constants/abis/sushiswap-slp-oracle.json'
-import SUSHI_ABI from '../constants/abis/sushi.json'
+import CAMPROLL_ABI from '@sushiswap/core/abi/CampRoll.json'
+import CAMPSWAP_TWAP_ORACLE_ABI from '../constants/abis/campswap-slp-oracle.json'
+import CAMP_ABI from '../constants/abis/camp.json'
 import TIMELOCK_ABI from '../constants/abis/timelock.json'
 import UNI_FACTORY_ABI from '../constants/abis/uniswap-v2-factory.json'
 import WETH9_ABI from '../constants/abis/weth.json'
@@ -156,9 +156,9 @@ export function useMulticall2Contract() {
   return useContract(chainId && MULTICALL2_ADDRESS[chainId], MULTICALL2_ABI, false)
 }
 
-export function useSushiContract(withSignerIfPossible = true): Contract | null {
+export function useCampContract(withSignerIfPossible = true): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId && SUSHI_ADDRESS[chainId], SUSHI_ABI, withSignerIfPossible)
+  return useContract(chainId && CAMP_ADDRESS[chainId], CAMP_ABI, withSignerIfPossible)
 }
 
 export function useMasterChefContract(withSignerIfPossible?: boolean): Contract | null {
@@ -188,7 +188,7 @@ export function useRouterContract(useArcher = false, withSignerIfPossible?: bool
   return useContract(address, abi, withSignerIfPossible)
 }
 
-export function useSushiBarContract(withSignerIfPossible?: boolean): Contract | null {
+export function useCampBarContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId && BAR_ADDRESS[chainId], BAR_ABI, withSignerIfPossible)
 }
@@ -217,9 +217,9 @@ export function useKashiPairCloneContract(address: string, withSignerIfPossible?
   return useContract(address, KASHIPAIR_ABI, withSignerIfPossible)
 }
 
-export function useSushiSwapSwapper(): Contract | null {
+export function useCampSwapSwapper(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId && SUSHISWAP_SWAPPER_ADDRESS[chainId], BASE_SWAPPER_ABI, false)
+  return useContract(chainId && CAMPSWAP_SWAPPER_ADDRESS[chainId], BASE_SWAPPER_ABI, false)
 }
 
 export function useChainlinkOracle(): Contract | null {
@@ -398,7 +398,7 @@ export function usePancakeV1FactoryContract(): Contract | null {
   )
 }
 
-export function useSushiRollContract(version: 'v1' | 'v2' = 'v2'): Contract | null {
+export function useCampRollContract(version: 'v1' | 'v2' = 'v2'): Contract | null {
   const { chainId } = useActiveWeb3React()
   let address: string | undefined
   if (chainId) {
@@ -421,15 +421,15 @@ export function useSushiRollContract(version: 'v1' | 'v2' = 'v2'): Contract | nu
         break
     }
   }
-  return useContract(address, SUSHIROLL_ABI, true)
+  return useContract(address, CAMPROLL_ABI, true)
 }
 
 // export function usePancakeRollV1Contract(): Contract | null {
-//     return useContract('0x677978dE066b3f5414eeA56644d9fCa3c75482a1', SUSHIROLL_ABI, true)
+//     return useContract('0x677978dE066b3f5414eeA56644d9fCa3c75482a1', CAMPROLL_ABI, true)
 // }
 
 // export function usePancakeRollV2Contract(): Contract | null {
-//     return useContract('', SUSHIROLL_ABI, true)
+//     return useContract('', CAMPROLL_ABI, true)
 // }
 
 export function useDashboardContract(): Contract | null {
@@ -451,20 +451,20 @@ export function useDashboardContract(): Contract | null {
   return useContract(address, DASHBOARD_ABI, false)
 }
 
-export function useSushiSwapTWAP0Oracle(): Contract | null {
-  return useContract(SUSHISWAP_TWAP_0_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
+export function useCampSwapTWAP0Oracle(): Contract | null {
+  return useContract(CAMPSWAP_TWAP_0_ORACLE_ADDRESS, CAMPSWAP_TWAP_ORACLE_ABI)
 }
 
-export function useSushiSwapTWAP1Oracle(): Contract | null {
-  return useContract(SUSHISWAP_TWAP_1_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
+export function useCampSwapTWAP1Oracle(): Contract | null {
+  return useContract(CAMPSWAP_TWAP_1_ORACLE_ADDRESS, CAMPSWAP_TWAP_ORACLE_ABI)
 }
 
-export function useSushiSwapTWAPContract(address?: string): Contract | null {
-  const TWAP_0 = useContract(SUSHISWAP_TWAP_0_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
-  const TWAP_1 = useContract(SUSHISWAP_TWAP_1_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
-  if (address === SUSHISWAP_TWAP_0_ORACLE_ADDRESS) {
+export function useCampSwapTWAPContract(address?: string): Contract | null {
+  const TWAP_0 = useContract(CAMPSWAP_TWAP_0_ORACLE_ADDRESS, CAMPSWAP_TWAP_ORACLE_ABI)
+  const TWAP_1 = useContract(CAMPSWAP_TWAP_1_ORACLE_ADDRESS, CAMPSWAP_TWAP_ORACLE_ABI)
+  if (address === CAMPSWAP_TWAP_0_ORACLE_ADDRESS) {
     return TWAP_0
-  } else if (address === SUSHISWAP_TWAP_1_ORACLE_ADDRESS) {
+  } else if (address === CAMPSWAP_TWAP_1_ORACLE_ADDRESS) {
     return TWAP_1
   }
   return undefined

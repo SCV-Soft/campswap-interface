@@ -9,7 +9,7 @@ import {
   getPicklePrice,
   getMphPrice,
   getStakePrice,
-  getSushiPrice,
+  getCampPrice,
   getYggPrice,
   getRulerPrice,
   getTruPrice,
@@ -127,8 +127,8 @@ export function useMaticPrice(swrConfig: SWRConfiguration = undefined) {
   return data
 }
 
-export function useSushiPrice(swrConfig: SWRConfiguration = undefined) {
-  const { data } = useSWR('sushiPrice', () => getSushiPrice(), swrConfig)
+export function useCampPrice(swrConfig: SWRConfiguration = undefined) {
+  const { data } = useSWR('campPrice', () => getCampPrice(), swrConfig)
   return data
 }
 
@@ -153,11 +153,11 @@ export function useLiquidityPositions(variables = undefined, swrConfig: SWRConfi
   return data
 }
 
-export function useSushiPairs(variables = undefined, query = undefined, swrConfig: SWRConfiguration = undefined) {
+export function useCampPairs(variables = undefined, query = undefined, swrConfig: SWRConfiguration = undefined) {
   const { chainId } = useActiveWeb3React()
   const shouldFetch = chainId
   const { data } = useSWR(
-    shouldFetch ? ['sushiPairs', chainId, JSON.stringify(variables)] : null,
+    shouldFetch ? ['campPairs', chainId, JSON.stringify(variables)] : null,
     (_, chainId) => getPairs(chainId, variables, query),
     swrConfig
   )

@@ -121,8 +121,8 @@ const CardHeader = () => {
           message={
             <>
               Zaps allow you to LP in any pool with any asset. Please be careful when zapping low liquidity tokens as
-              there may be very high slippage. ETH, WBTC, USDC, DAI and SUSHI are the safest tokens to zap with. If
-              price impact seems too high, try disabling multihop.
+              there may be very high slippage. ETH, WBTC, USDC, DAI and CAMP are the safest tokens to zap with. If price
+              impact seems too high, try disabling multihop.
             </>
           }
           type="warning"
@@ -259,11 +259,11 @@ export default function Zap() {
   return (
     <>
       <Head>
-        <title>{i18n._(t`Zap`)} | Sushi</title>
+        <title>{i18n._(t`Zap`)} | Camp</title>
         <meta
           key="description"
           name="description"
-          content="SushiSwap allows for swapping of ERC20 compatible tokens across multiple networks"
+          content="CampSwap allows for swapping of ERC20 compatible tokens across multiple networks"
         />
       </Head>
       {!poolAddress ? (

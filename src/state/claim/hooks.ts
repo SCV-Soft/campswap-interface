@@ -1,5 +1,5 @@
 import { ChainId, Currency, CurrencyAmount, JSBI, Token } from '@sushiswap/sdk'
-import { MERKLE_ROOT, SUSHI } from './../../constants/index'
+import { MERKLE_ROOT, CAMP } from './../../constants/index'
 import { getAddress, isAddress } from '@ethersproject/address'
 import { useEffect, useState } from 'react'
 
@@ -86,19 +86,19 @@ export function useUserUnclaimedAmount(account: string | null | undefined): Curr
   const userClaimData = useUserClaimData(account)
   const canClaim = useUserHasAvailableClaim(account)
 
-  const sushi = chainId ? SUSHI[chainId] : undefined
+  const camp = chainId ? CAMP[chainId] : undefined
 
   // console.log('claimStats:', {
   //   canClaim: canClaim,
   //   userClaimData: userClaimData,
-  //   sushi: sushi
+  //   camp: camp
   // })
 
-  if (!sushi) return undefined
+  if (!camp) return undefined
   if (!canClaim || !userClaimData) {
-    return CurrencyAmount.fromRawAmount(sushi, JSBI.BigInt(0))
+    return CurrencyAmount.fromRawAmount(camp, JSBI.BigInt(0))
   }
-  return CurrencyAmount.fromRawAmount(sushi, JSBI.BigInt(userClaimData.amount))
+  return CurrencyAmount.fromRawAmount(camp, JSBI.BigInt(userClaimData.amount))
 }
 
 export function useClaimCallback(account: string | null | undefined): {
@@ -126,7 +126,7 @@ export function useClaimCallback(account: string | null | undefined): {
         })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Claimed ${unClaimedAmount?.toSignificant(4)} SUSHI`,
+            summary: `Claimed ${unClaimedAmount?.toSignificant(4)} CAMP`,
             claim: { recipient: account },
           })
           return response.hash

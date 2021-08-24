@@ -8,7 +8,7 @@ import {
   useFarmPairAddresses,
   useFarms,
   useKashiPairs,
-  useMasterChefV1SushiPerBlock,
+  useMasterChefV1CampPerBlock,
   useMasterChefV1TotalAllocPoint,
   useMaticPrice,
   useMphPrice,
@@ -16,8 +16,8 @@ import {
   usePicklePrice,
   useRulerPrice,
   useStakePrice,
-  useSushiPairs,
-  useSushiPrice,
+  useCampPairs,
+  useCampPrice,
   useTruPrice,
   useYggPrice,
 } from '../../services/graph'
@@ -44,7 +44,7 @@ export default function Farm(): JSX.Element {
 
   const pairAddresses = useFarmPairAddresses()
 
-  const swapPairs = useSushiPairs({
+  const swapPairs = useCampPairs({
     where: {
       id_in: pairAddresses,
     },
@@ -64,12 +64,12 @@ export default function Farm(): JSX.Element {
 
   const masterChefV1TotalAllocPoint = useMasterChefV1TotalAllocPoint()
 
-  const masterChefV1SushiPerBlock = useMasterChefV1SushiPerBlock()
+  const masterChefV1CampPerBlock = useMasterChefV1CampPerBlock()
 
   // TODO: Obviously need to sort this out but this is fine for time being,
   // prices are only loaded when needed for a specific network
-  const [sushiPrice, ethPrice, maticPrice, stakePrice, onePrice] = [
-    useSushiPrice(),
+  const [campPrice, ethPrice, maticPrice, stakePrice, onePrice] = [
+    useCampPrice(),
     useEthPrice(),
     useMaticPrice(),
     useStakePrice(),
@@ -98,20 +98,20 @@ export default function Farm(): JSX.Element {
     const blocksPerHour = 3600 / averageBlockTime
 
     function getRewards() {
-      // TODO: Some subgraphs give sushiPerBlock & sushiPerSecond, and mcv2 gives nothing
-      const sushiPerBlock =
-        pool?.owner?.sushiPerBlock / 1e18 ||
-        (pool?.owner?.sushiPerSecond / 1e18) * averageBlockTime ||
-        masterChefV1SushiPerBlock
+      // TODO: Some subgraphs give campPerBlock & campPerSecond, and mcv2 gives nothing
+      const campPerBlock =
+        pool?.owner?.campPerBlock / 1e18 ||
+        (pool?.owner?.campPerSecond / 1e18) * averageBlockTime ||
+        masterChefV1CampPerBlock
 
-      const rewardPerBlock = (pool.allocPoint / pool.owner.totalAllocPoint) * sushiPerBlock
+      const rewardPerBlock = (pool.allocPoint / pool.owner.totalAllocPoint) * campPerBlock
 
       const defaultReward = {
-        token: 'SUSHI',
-        icon: 'https://raw.githubusercontent.com/sushiswap/icons/master/token/sushi.jpg',
+        token: 'CAMP',
+        icon: 'https://raw.githubusercontent.com/campswap/icons/master/token/camp.jpg',
         rewardPerBlock,
         rewardPerDay: rewardPerBlock * blocksPerDay,
-        rewardPrice: sushiPrice,
+        rewardPrice: campPrice,
       }
 
       const defaultRewards = [defaultReward]
@@ -121,8 +121,8 @@ export default function Farm(): JSX.Element {
         pool.owner.totalAllocPoint = masterChefV1TotalAllocPoint
 
         const icon = ['0', '3', '4', '8'].includes(pool.id)
-          ? `https://raw.githubusercontent.com/sushiswap/icons/master/token/${pool.rewardToken.symbol.toLowerCase()}.jpg`
-          : `https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/${getAddress(
+          ? `https://raw.githubusercontent.com/campswap/icons/master/token/${pool.rewardToken.symbol.toLowerCase()}.jpg`
+          : `https://raw.githubusercontent.com/campswap/assets/master/blockchains/ethereum/assets/${getAddress(
               pool.rewarder.rewardToken
             )}/logo.png`
 
@@ -162,9 +162,9 @@ export default function Farm(): JSX.Element {
 
         return [...defaultRewards, reward]
       } else if (pool.chef === Chef.MINICHEF) {
-        const sushiPerSecond = ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.miniChef.sushiPerSecond) / 1e18
-        const sushiPerBlock = sushiPerSecond * averageBlockTime
-        const sushiPerDay = sushiPerBlock * blocksPerDay
+        const campPerSecond = ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.miniChef.campPerSecond) / 1e18
+        const campPerBlock = campPerSecond * averageBlockTime
+        const campPerDay = campPerBlock * blocksPerDay
 
         const rewardPerSecond =
           ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.rewarder.rewardPerSecond) / 1e18
@@ -174,17 +174,17 @@ export default function Farm(): JSX.Element {
         const reward = {
           [ChainId.MATIC]: {
             token: 'MATIC',
-            icon: 'https://raw.githubusercontent.com/sushiswap/icons/master/token/polygon.jpg',
+            icon: 'https://raw.githubusercontent.com/campswap/icons/master/token/polygon.jpg',
             rewardPrice: maticPrice,
           },
           [ChainId.XDAI]: {
             token: 'STAKE',
-            icon: 'https://raw.githubusercontent.com/sushiswap/icons/master/token/stake.jpg',
+            icon: 'https://raw.githubusercontent.com/campswap/icons/master/token/stake.jpg',
             rewardPrice: stakePrice,
           },
           [ChainId.HARMONY]: {
             token: 'ONE',
-            icon: 'https://raw.githubusercontent.com/sushiswap/icons/master/token/one.jpg',
+            icon: 'https://raw.githubusercontent.com/campswap/icons/master/token/one.jpg',
             rewardPrice: onePrice,
           },
         }
@@ -192,8 +192,8 @@ export default function Farm(): JSX.Element {
         return [
           {
             ...defaultReward,
-            rewardPerBlock: sushiPerBlock,
-            rewardPerDay: sushiPerDay,
+            rewardPerBlock: campPerBlock,
+            rewardPerDay: campPerDay,
           },
           {
             ...reward[chainId],
@@ -250,7 +250,7 @@ export default function Farm(): JSX.Element {
   const FILTER = {
     all: (farm) => farm.allocPoint !== '0',
     portfolio: (farm) => farm?.amount && !farm.amount.isZero(),
-    sushi: (farm) => farm.pair.type === PairType.SWAP && farm.allocPoint !== '0',
+    camp: (farm) => farm.pair.type === PairType.SWAP && farm.allocPoint !== '0',
     kashi: (farm) => farm.pair.type === PairType.KASHI && farm.allocPoint !== '0',
     '2x': (farm) => (farm.chef === Chef.MASTERCHEF_V2 || farm.chef === Chef.MINICHEF) && farm.allocPoint !== '0',
   }
@@ -282,8 +282,8 @@ export default function Farm(): JSX.Element {
   return (
     <Container id="farm-page" className="grid h-full grid-cols-4 py-4 mx-auto md:py-8 lg:py-12 gap-9" maxWidth="7xl">
       <Head>
-        <title>Farm | Sushi</title>
-        <meta key="description" name="description" content="Farm SUSHI" />
+        <title>Farm | Camp</title>
+        <meta key="description" name="description" content="Farm CAMP" />
       </Head>
       <div className={classNames('sticky top-0 hidden lg:block md:col-span-1')} style={{ maxHeight: '40rem' }}>
         <Menu positionsLength={positions.length} />

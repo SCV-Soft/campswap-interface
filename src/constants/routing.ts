@@ -36,7 +36,7 @@ import {
   RUNE,
   SPANK,
   STETH,
-  SUSHI,
+  CAMP,
   UMA,
   USDC,
   USDP,
@@ -45,7 +45,7 @@ import {
   WBTC,
   WOOFY,
   XDAI,
-  XSUSHI,
+  XCAMP,
   YFI,
 } from './tokens'
 // a list of tokens by chain
@@ -127,7 +127,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     RUNE,
     NFTX,
     STETH,
-    SUSHI[ChainId.MAINNET],
+    CAMP[ChainId.MAINNET],
   ],
   [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
   [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
@@ -212,7 +212,7 @@ export const CUSTOM_BASES: {
     [AMPL.address]: [DAI, WNATIVE[ChainId.MAINNET]],
   },
   [ChainId.MATIC]: {
-    [MATIC.TEL.address]: [MATIC.SUSHI, MATIC.AAVE],
+    [MATIC.TEL.address]: [MATIC.CAMP, MATIC.AAVE],
   },
 }
 
@@ -310,7 +310,7 @@ export const PINNED_PAIRS: {
   readonly [chainId in ChainId]?: [Token, Token][]
 } = {
   [ChainId.MAINNET]: [
-    [SUSHI[ChainId.MAINNET] as Token, WNATIVE[ChainId.MAINNET]],
+    [CAMP[ChainId.MAINNET] as Token, WNATIVE[ChainId.MAINNET]],
     [
       new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
       new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin'),

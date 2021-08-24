@@ -17,15 +17,15 @@ import { GRAPH_HOST } from '../constants'
 import { request } from 'graphql-request'
 
 export const EXCHANGE = {
-  [ChainId.MAINNET]: 'sushiswap/exchange',
-  [ChainId.XDAI]: 'sushiswap/xdai-exchange',
-  [ChainId.MATIC]: 'sushiswap/matic-exchange',
-  [ChainId.FANTOM]: 'sushiswap/fantom-exchange',
-  [ChainId.BSC]: 'sushiswap/bsc-exchange',
-  [ChainId.HARMONY]: 'sushiswap/harmony-exchange',
-  [ChainId.OKEX]: 'sushiswap/okex-exchange',
-  [ChainId.AVALANCHE]: 'sushiswap/avalanche-exchange',
-  [ChainId.CELO]: 'sushiswap/celo-exchange',
+  [ChainId.MAINNET]: 'campswap/exchange',
+  [ChainId.XDAI]: 'campswap/xdai-exchange',
+  [ChainId.MATIC]: 'campswap/matic-exchange',
+  [ChainId.FANTOM]: 'campswap/fantom-exchange',
+  [ChainId.BSC]: 'campswap/bsc-exchange',
+  [ChainId.HARMONY]: 'campswap/harmony-exchange',
+  [ChainId.OKEX]: 'campswap/okex-exchange',
+  [ChainId.AVALANCHE]: 'campswap/avalanche-exchange',
+  [ChainId.CELO]: 'campswap/celo-exchange',
 }
 
 export const exchange = async (chainId = ChainId.MAINNET, query, variables) =>
@@ -124,8 +124,8 @@ export const getMphPrice = async () => {
   })
 }
 
-export const getSushiPrice = async () => {
-  // console.log('getSushiPrice')
+export const getCampPrice = async () => {
+  // console.log('getCampPrice')
   return getTokenPrice(ChainId.MAINNET, tokenPriceQuery, {
     id: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
   })

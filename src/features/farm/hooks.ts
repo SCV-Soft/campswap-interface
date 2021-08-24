@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, MASTERCHEF_ADDRESS } from '@sushiswap/sdk'
 import { Chef, PairType } from './enum'
-import { MASTERCHEF_V2_ADDRESS, MINICHEF_ADDRESS, SUSHI } from '../../constants'
+import { MASTERCHEF_V2_ADDRESS, MINICHEF_ADDRESS, CAMP } from '../../constants'
 import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../../state/multicall/hooks'
 import { useCallback, useMemo } from 'react'
 import { useMasterChefContract, useMasterChefV2Contract, useMiniChefContract } from '../../hooks'
@@ -69,7 +69,7 @@ export function useUserInfo(farm, token) {
   return amount ? CurrencyAmount.fromRawAmount(token, amount) : undefined
 }
 
-export function usePendingSushi(farm) {
+export function usePendingCamp(farm) {
   const { account, chainId } = useActiveWeb3React()
 
   const contract = useChefContract(farm.chef)
@@ -81,13 +81,13 @@ export function usePendingSushi(farm) {
     return [String(farm.id), String(account)]
   }, [farm, account])
 
-  const result = useSingleCallResult(args ? contract : null, 'pendingSushi', args)?.result
+  const result = useSingleCallResult(args ? contract : null, 'pendingCamp', args)?.result
 
   const value = result?.[0]
 
   const amount = value ? JSBI.BigInt(value.toString()) : undefined
 
-  return amount ? CurrencyAmount.fromRawAmount(SUSHI[chainId], amount) : undefined
+  return amount ? CurrencyAmount.fromRawAmount(CAMP[chainId], amount) : undefined
 }
 
 export function usePendingToken(farm, contract) {
@@ -122,7 +122,7 @@ export function useChefPositions(contract?: Contract | null, rewarder?: Contract
     return [...Array(numberOfPools.toNumber()).keys()].map((pid) => [String(pid), String(account)])
   }, [numberOfPools, account])
 
-  const pendingSushi = useSingleContractMultipleData(args ? contract : null, 'pendingSushi', args)
+  const pendingCamp = useSingleContractMultipleData(args ? contract : null, 'pendingCamp', args)
 
   const userInfo = useSingleContractMultipleData(args ? contract : null, 'userInfo', args)
 
@@ -143,21 +143,21 @@ export function useChefPositions(contract?: Contract | null, rewarder?: Contract
   }, [chainId, contract])
 
   return useMemo(() => {
-    if (!pendingSushi || !userInfo) {
+    if (!pendingCamp || !userInfo) {
       return []
     }
-    return zip(pendingSushi, userInfo)
+    return zip(pendingCamp, userInfo)
       .map((data, i) => ({
         id: args[i][0],
-        pendingSushi: data[0].result?.[0] || Zero,
+        pendingCamp: data[0].result?.[0] || Zero,
         amount: data[1].result?.[0] || Zero,
         chef: getChef(),
         // pendingTokens: data?.[2]?.result,
       }))
-      .filter(({ pendingSushi, amount }) => {
-        return (pendingSushi && !pendingSushi.isZero()) || (amount && !amount.isZero())
+      .filter(({ pendingCamp, amount }) => {
+        return (pendingCamp && !pendingCamp.isZero()) || (amount && !amount.isZero())
       })
-  }, [args, getChef, pendingSushi, userInfo])
+  }, [args, getChef, pendingCamp, userInfo])
 }
 
 export function usePositions() {

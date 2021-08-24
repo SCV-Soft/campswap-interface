@@ -22,7 +22,7 @@ import Web3Connect from '../../../components/Web3Connect'
 import { t } from '@lingui/macro'
 import { useActiveWeb3React } from '../../../hooks/useActiveWeb3React'
 import { useLingui } from '@lingui/react'
-import { useSushiRollContract } from '../../../hooks/useContract'
+import { useCampRollContract } from '../../../hooks/useContract'
 
 const ZERO = JSBI.BigInt(0)
 
@@ -172,17 +172,17 @@ const MigrateButtons = ({ state, exchange }: { state: MigrateState; exchange: st
   const { i18n } = useLingui()
 
   const [error, setError] = useState<MetamaskError>({})
-  const sushiRollContract = useSushiRollContract(
+  const campRollContract = useCampRollContract(
     state.selectedLPToken?.version ? state.selectedLPToken?.version : undefined
   )
   // console.log(
-  //   'sushiRollContract address',
-  //   sushiRollContract?.address,
+  //   'campRollContract address',
+  //   campRollContract?.address,
   //   state.selectedLPToken?.balance,
   //   state.selectedLPToken?.version
   // )
 
-  const [approval, approve] = useApproveCallback(state.selectedLPToken?.balance, sushiRollContract?.address)
+  const [approval, approve] = useApproveCallback(state.selectedLPToken?.balance, campRollContract?.address)
   const noLiquidityTokens = !!state.selectedLPToken?.balance && state.selectedLPToken?.balance.equalTo(ZERO)
   const isButtonDisabled = !state.amount
 
@@ -251,7 +251,7 @@ const MigrateButtons = ({ state, exchange }: { state: MigrateState; exchange: st
       {error.message && error.code !== 4001 && <div className="font-medium text-center text-red">{error.message}</div>}
       <div className="text-sm text-center text-low-emphesis">
         {i18n._(
-          t`Your ${exchange} ${state.selectedLPToken.tokenA.symbol}/${state.selectedLPToken.tokenB.symbol} liquidity will become SushiSwap ${state.selectedLPToken.tokenA.symbol}/${state.selectedLPToken.tokenB.symbol} liquidity.`
+          t`Your ${exchange} ${state.selectedLPToken.tokenA.symbol}/${state.selectedLPToken.tokenB.symbol} liquidity will become CampSwap ${state.selectedLPToken.tokenA.symbol}/${state.selectedLPToken.tokenB.symbol} liquidity.`
         )}
       </div>
     </div>
@@ -313,8 +313,8 @@ export default function Migrate() {
   return (
     <Container id="migrate-page" className="py-4 space-y-6 md:py-8 lg:py-12" maxWidth="lg">
       <Head>
-        <title>Migrate | Sushi</title>
-        <meta key="description" name="description" content="Migrate your liquidity to SushiSwap." />
+        <title>Migrate | Camp</title>
+        <meta key="description" name="description" content="Migrate your liquidity to CampSwap." />
       </Head>
 
       <div className="mb-8 text-2xl text-center">{i18n._(t`Migrate ${exchange} Liquidity`)}</div>

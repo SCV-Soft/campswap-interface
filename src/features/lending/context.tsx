@@ -16,7 +16,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import Fraction from '../../entities/Fraction'
 import { KASHI_ADDRESS } from '../../constants/kashi'
 import { USDC } from '../../hooks'
-import { bentobox } from '@sushiswap/sushi-data'
+import { bentobox } from '@sushiswap/camp-data'
 import { ethers } from 'ethers'
 import { getCurrency } from '../../functions/currency'
 import { getOracle } from '../../entities/Oracle'
@@ -41,16 +41,16 @@ interface State {
   info:
     | {
         ethBalance: BigNumber
-        sushiBalance: BigNumber
-        sushiBarBalance: BigNumber
-        xsushiBalance: BigNumber
-        xsushiSupply: BigNumber
-        sushiBarAllowance: BigNumber
+        campBalance: BigNumber
+        campBarBalance: BigNumber
+        xcampBalance: BigNumber
+        xcampSupply: BigNumber
+        campBarAllowance: BigNumber
         factories: any[]
         ethRate: BigNumber
-        sushiRate: BigNumber
+        campRate: BigNumber
         btcRate: BigNumber
-        pendingSushi: BigNumber
+        pendingCamp: BigNumber
         blockTimeStamp: BigNumber
         masterContractApproved: boolean[]
       }
@@ -61,16 +61,16 @@ interface State {
 const initialState: State = {
   info: {
     ethBalance: ZERO,
-    sushiBalance: ZERO,
-    sushiBarBalance: ZERO,
-    xsushiBalance: ZERO,
-    xsushiSupply: ZERO,
-    sushiBarAllowance: ZERO,
+    campBalance: ZERO,
+    campBarBalance: ZERO,
+    xcampBalance: ZERO,
+    xcampSupply: ZERO,
+    campBarAllowance: ZERO,
     factories: [],
     ethRate: ZERO,
-    sushiRate: ZERO,
+    campRate: ZERO,
     btcRate: ZERO,
-    pendingSushi: ZERO,
+    pendingCamp: ZERO,
     blockTimeStamp: ZERO,
     masterContractApproved: [],
   },

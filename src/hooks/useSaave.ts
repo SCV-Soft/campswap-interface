@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useSaaveContract, useSushiContract } from '../hooks/useContract'
+import { useSaaveContract, useCampContract } from '../hooks/useContract'
 
 import { BalanceProps } from './useTokenBalance'
 import { Fraction } from '../entities'
@@ -13,7 +13,7 @@ const useMaker = () => {
   const { account } = useActiveWeb3React()
 
   const addTransaction = useTransactionAdder()
-  const sushiContract = useSushiContract(true) // withSigner
+  const campContract = useCampContract(true) // withSigner
   const saaveContract = useSaaveContract(true) // withSigner
 
   // Allowance
@@ -21,7 +21,7 @@ const useMaker = () => {
   const fetchAllowance = useCallback(async () => {
     if (account) {
       try {
-        const allowance = await sushiContract?.allowance(account, saaveContract?.address)
+        const allowance = await campContract?.allowance(account, saaveContract?.address)
         const formatted = Fraction.from(BigNumber.from(allowance), BigNumber.from(10).pow(18)).toString()
         setAllowance(formatted)
       } catch (error) {
@@ -29,32 +29,32 @@ const useMaker = () => {
         throw error
       }
     }
-  }, [account, saaveContract?.address, sushiContract])
+  }, [account, saaveContract?.address, campContract])
   useEffect(() => {
-    if (account && saaveContract && sushiContract) {
+    if (account && saaveContract && campContract) {
       fetchAllowance()
     }
     const refreshInterval = setInterval(fetchAllowance, 10000)
     return () => clearInterval(refreshInterval)
-  }, [account, fetchAllowance, saaveContract, sushiContract])
+  }, [account, fetchAllowance, saaveContract, campContract])
 
   // Approve
   const approve = useCallback(async () => {
     try {
-      const tx = await sushiContract?.approve(saaveContract?.address, ethers.constants.MaxUint256.toString())
+      const tx = await campContract?.approve(saaveContract?.address, ethers.constants.MaxUint256.toString())
       return addTransaction(tx, { summary: 'Approve' })
     } catch (e) {
       return e
     }
-  }, [addTransaction, saaveContract?.address, sushiContract])
+  }, [addTransaction, saaveContract?.address, campContract])
 
-  // Saave Sushi - xSUSHI - aXSUSHI
+  // Saave Camp - xCAMP - aXCAMP
   const saave = useCallback(
     async (amount: BalanceProps | undefined) => {
       if (amount?.value) {
         try {
           const tx = await saaveContract?.saave(amount?.value)
-          return addTransaction(tx, { summary: 'SUSHI → xSUSHI → aXSUSHI' })
+          return addTransaction(tx, { summary: 'CAMP → xCAMP → aXCAMP' })
         } catch (e) {
           return e
         }

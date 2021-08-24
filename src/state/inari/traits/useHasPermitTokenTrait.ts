@@ -23,7 +23,7 @@ const useHasPermitTokenTrait = (props: BaseStrategyHook): BaseStrategyWithHasPer
   const addTransaction = useTransactionAdder()
   const { signatureData, gatherPermitSignature } = useERC20Permit(inputValue, inariContract?.address, {
     type: 1,
-    name: 'SushiSwap',
+    name: 'CampSwap',
   })
 
   // Batch execute with permit if one is provided or else execute normally

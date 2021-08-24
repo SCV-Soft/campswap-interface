@@ -1,4 +1,4 @@
-import { ChainId, Ether, SUSHI_ADDRESS, Token, WETH9, WNATIVE } from '@sushiswap/sdk'
+import { ChainId, Ether, CAMP_ADDRESS, Token, WETH9, WNATIVE } from '@sushiswap/sdk'
 
 import { SupportedChainId } from '../chains'
 
@@ -34,7 +34,7 @@ export const MATIC: { [key: string]: Token } = {
   WETH: new Token(ChainId.MATIC, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether'),
   USDT: new Token(ChainId.MATIC, '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', 6, 'USDT', 'Tether USD'),
   TEL: new Token(ChainId.MATIC, '0xdF7837DE1F2Fa4631D716CF2502f8b230F1dcc32', 2, 'TEL', 'Telcoin'),
-  SUSHI: new Token(ChainId.MATIC, '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a', 18, 'SUSHI', 'SushiToken'),
+  CAMP: new Token(ChainId.MATIC, '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a', 18, 'CAMP', 'CampToken'),
   AAVE: new Token(ChainId.MATIC, '0xD6DF932A45C0f255f85145f286eA0b292B21C90B', 18, 'AAVE', 'Aave'),
   FRAX: new Token(ChainId.MATIC, '0x104592a158490a9228070E0A8e5343B499e125D0', 18, 'FRAX', 'Frax'),
   FXS: new Token(ChainId.MATIC, '0x3e121107F6F22DA4911079845a470757aF4e1A1b', 18, 'FXS', 'Frax Share'),
@@ -160,16 +160,16 @@ export const USDP = new Token(
 )
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
 export const UST = new Token(ChainId.MAINNET, '0xa47c8bf37f92aBed4A126BDA807A7b7498661acD', 18, 'UST', 'Wrapped UST')
-export const XSUSHI_CALL = new Token(
+export const XCAMP_CALL = new Token(
   ChainId.MAINNET,
   '0xada279f9301C01A4eF914127a6C2a493Ad733924',
   18,
   'XSUc25-0531',
-  'XSUSHI 25 Call [31 May 2021]'
+  'XCAMP 25 Call [31 May 2021]'
 )
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
 
-export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
+export const XCAMP = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xCAMP', 'CampBar')
 
 export const LIFT = new Token(ChainId.MAINNET, '0xf9209d900f7ad1DC45376a2caA61c78f6dEA53B6', 18, 'LIFT', 'LiftKitchen')
 export const LFBTC = new Token(
@@ -182,19 +182,19 @@ export const LFBTC = new Token(
 export const CVXCRV = new Token(ChainId.MAINNET, '0x62B9c7356A2Dc64a1969e19C23e4f579F9810Aa7', 18, 'cvxCRV', 'cvxCRV')
 export const CRV = new Token(ChainId.MAINNET, '0xD533a949740bb3306d119CC777fa900bA034cd52', 18, 'CRV', 'Curve')
 
-export const CRXSUSHI = new Token(
+export const CRXCAMP = new Token(
   ChainId.MAINNET,
   '0x228619cca194fbe3ebeb2f835ec1ea5080dafbb2',
   8,
-  'crXSUSHI',
-  'Cream SushiBar'
+  'crXCAMP',
+  'Cream CampBar'
 )
-export const AXSUSHI = new Token(
+export const AXCAMP = new Token(
   ChainId.MAINNET,
   '0xf256cc7847e919fac9b808cc216cac87ccf2f47a',
   18,
-  'aXSUSHI',
-  'Aave interest bearing XSUSHI'
+  'aXCAMP',
+  'Aave interest bearing XCAMP'
 )
 
 export const DPI = new Token(ChainId.MAINNET, '0x1494CA1F11D487c2bBe4543E90080AeBa4BA3C2b', 18, 'DefiPulse', 'DPI')
@@ -213,22 +213,22 @@ type ChainTokenMap = {
   readonly [chainId in ChainId]?: Token
 }
 
-// SUSHI
-export const SUSHI: ChainTokenMap = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, SUSHI_ADDRESS[ChainId.MAINNET], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, SUSHI_ADDRESS[ChainId.ROPSTEN], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, SUSHI_ADDRESS[ChainId.RINKEBY], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, SUSHI_ADDRESS[ChainId.GÖRLI], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, SUSHI_ADDRESS[ChainId.KOVAN], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.MATIC]: new Token(ChainId.MATIC, SUSHI_ADDRESS[ChainId.MATIC], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.FANTOM]: new Token(ChainId.FANTOM, SUSHI_ADDRESS[ChainId.FANTOM], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.XDAI]: new Token(ChainId.XDAI, SUSHI_ADDRESS[ChainId.XDAI], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.BSC]: new Token(ChainId.BSC, SUSHI_ADDRESS[ChainId.BSC], 18, 'SUSHI', 'SushiToken'),
-  // [ChainId.ARBITRUM]: new Token(ChainId.ARBITRUM, SUSHI_ADDRESS[ChainId.ARBITRUM], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, SUSHI_ADDRESS[ChainId.AVALANCHE], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.OKEX]: new Token(ChainId.OKEX, SUSHI_ADDRESS[ChainId.OKEX], 18, 'SUSHI', 'SushiToken'),
-  [ChainId.HARMONY]: new Token(ChainId.HARMONY, SUSHI_ADDRESS[ChainId.HARMONY], 18, 'SUSHI', 'SushiToken'),
-  // [ChainId.HECO]: new Token(ChainId.HECO, SUSHI_ADDRESS[ChainId.HECO], 18, 'SUSHI', 'SushiToken'),
+// CAMP
+export const CAMP: ChainTokenMap = {
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, CAMP_ADDRESS[ChainId.MAINNET], 18, 'CAMP', 'CampToken'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, CAMP_ADDRESS[ChainId.ROPSTEN], 18, 'CAMP', 'CampToken'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, CAMP_ADDRESS[ChainId.RINKEBY], 18, 'CAMP', 'CampToken'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, CAMP_ADDRESS[ChainId.GÖRLI], 18, 'CAMP', 'CampToken'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, CAMP_ADDRESS[ChainId.KOVAN], 18, 'CAMP', 'CampToken'),
+  [ChainId.MATIC]: new Token(ChainId.MATIC, CAMP_ADDRESS[ChainId.MATIC], 18, 'CAMP', 'CampToken'),
+  [ChainId.FANTOM]: new Token(ChainId.FANTOM, CAMP_ADDRESS[ChainId.FANTOM], 18, 'CAMP', 'CampToken'),
+  [ChainId.XDAI]: new Token(ChainId.XDAI, CAMP_ADDRESS[ChainId.XDAI], 18, 'CAMP', 'CampToken'),
+  [ChainId.BSC]: new Token(ChainId.BSC, CAMP_ADDRESS[ChainId.BSC], 18, 'CAMP', 'CampToken'),
+  // [ChainId.ARBITRUM]: new Token(ChainId.ARBITRUM, CAMP_ADDRESS[ChainId.ARBITRUM], 18, 'CAMP', 'CampToken'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, CAMP_ADDRESS[ChainId.AVALANCHE], 18, 'CAMP', 'CampToken'),
+  [ChainId.OKEX]: new Token(ChainId.OKEX, CAMP_ADDRESS[ChainId.OKEX], 18, 'CAMP', 'CampToken'),
+  [ChainId.HARMONY]: new Token(ChainId.HARMONY, CAMP_ADDRESS[ChainId.HARMONY], 18, 'CAMP', 'CampToken'),
+  // [ChainId.HECO]: new Token(ChainId.HECO, CAMP_ADDRESS[ChainId.HECO], 18, 'CAMP', 'CampToken'),
 }
 
 export const WETH9_EXTENDED: { [chainId: number]: Token } = {

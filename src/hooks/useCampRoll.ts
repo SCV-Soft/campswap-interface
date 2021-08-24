@@ -5,11 +5,11 @@ import { ethers } from 'ethers'
 import { signERC2612Permit } from 'eth-permit'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useCallback } from 'react'
-import { useSushiRollContract } from '../hooks/useContract'
+import { useCampRollContract } from '../hooks/useContract'
 
-const useSushiRoll = (version: 'v1' | 'v2' = 'v2') => {
+const useCampRoll = (version: 'v1' | 'v2' = 'v2') => {
   const { chainId, library, account } = useActiveWeb3React()
-  const sushiRoll = useSushiRollContract(version)
+  const campRoll = useCampRollContract(version)
   const ttl = 60 * 20
 
   let from = ''
@@ -22,7 +22,7 @@ const useSushiRoll = (version: 'v1' | 'v2' = 'v2') => {
 
   const migrate = useCallback(
     async (lpToken: LPToken, amount: ethers.BigNumber) => {
-      if (sushiRoll) {
+      if (campRoll) {
         const deadline = Math.floor(new Date().getTime() / 1000) + ttl
         const args = [
           lpToken.tokenA.address,
@@ -33,32 +33,32 @@ const useSushiRoll = (version: 'v1' | 'v2' = 'v2') => {
           deadline,
         ]
 
-        const gasLimit = await sushiRoll.estimateGas.migrate(...args)
-        const tx = sushiRoll.migrate(...args, {
+        const gasLimit = await campRoll.estimateGas.migrate(...args)
+        const tx = campRoll.migrate(...args, {
           gasLimit: gasLimit.mul(120).div(100),
         })
 
         ReactGA.event({
           category: 'Migrate',
-          action: `${from}->Sushiswap`,
+          action: `${from}->Campswap`,
           label: 'migrate',
         })
 
         return tx
       }
     },
-    [sushiRoll, ttl, from]
+    [campRoll, ttl, from]
   )
 
   const migrateWithPermit = useCallback(
     async (lpToken: LPToken, amount: ethers.BigNumber) => {
-      if (account && sushiRoll) {
+      if (account && campRoll) {
         const deadline = Math.floor(new Date().getTime() / 1000) + ttl
         const permit = await signERC2612Permit(
           library,
           lpToken.address,
           account,
-          sushiRoll.address,
+          campRoll.address,
           amount.toString(),
           deadline
         )
@@ -74,21 +74,21 @@ const useSushiRoll = (version: 'v1' | 'v2' = 'v2') => {
           permit.s,
         ]
 
-        const gasLimit = await sushiRoll.estimateGas.migrateWithPermit(...args)
-        const tx = await sushiRoll.migrateWithPermit(...args, {
+        const gasLimit = await campRoll.estimateGas.migrateWithPermit(...args)
+        const tx = await campRoll.migrateWithPermit(...args, {
           gasLimit: gasLimit.mul(120).div(100),
         })
 
         ReactGA.event({
           category: 'Migrate',
-          action: `${from}->Sushiswap`,
+          action: `${from}->Campswap`,
           label: 'migrateWithPermit',
         })
 
         return tx
       }
     },
-    [account, library, sushiRoll, ttl, from]
+    [account, library, campRoll, ttl, from]
   )
 
   return {
@@ -97,4 +97,4 @@ const useSushiRoll = (version: 'v1' | 'v2' = 'v2') => {
   }
 }
 
-export default useSushiRoll
+export default useCampRoll

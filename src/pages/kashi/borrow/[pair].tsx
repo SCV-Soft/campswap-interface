@@ -51,11 +51,11 @@ function Pair() {
   return (
     <>
       <Head>
-        <title>{i18n._(t`Borrow ${pair?.asset?.symbol}-${pair?.collateral?.symbol}`)} | Sushi</title>
+        <title>{i18n._(t`Borrow ${pair?.asset?.symbol}-${pair?.collateral?.symbol}`)} | Camp</title>
         <meta
           key="description"
           name="description"
-          content={`Borrow ${pair?.asset?.symbol} against ${pair?.collateral?.symbol} collateral on Kashi by Sushi`}
+          content={`Borrow ${pair?.asset?.symbol} against ${pair?.collateral?.symbol} collateral on Kashi by Camp`}
         />
       </Head>
       <Card
@@ -238,7 +238,7 @@ const PairLayout = ({ children }) => {
                 />
               </div>
             </div>
-            {pair && pair.oracle.name === 'SushiSwap' && (
+            {pair && pair.oracle.name === 'CampSwap' && (
               <>
                 <div className="flex justify-between pt-3">
                   <div className="text-xl text-high-emphesis">{i18n._(t`SLP`)}</div>

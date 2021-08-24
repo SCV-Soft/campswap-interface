@@ -402,8 +402,8 @@ const MAINNET_CHAINLINK_TOKENS = [
     decimals: 18,
   },
   {
-    symbol: 'SUSHI',
-    name: 'SushiToken',
+    symbol: 'CAMP',
+    name: 'CampToken',
     address: '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2',
     decimals: 18,
   },
@@ -498,8 +498,8 @@ const MAINNET_CHAINLINK_TOKENS = [
     decimals: 18,
   },
   {
-    symbol: 'xSUSHI',
-    name: 'SushiBar',
+    symbol: 'xCAMP',
+    name: 'CampBar',
     address: '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272',
     decimals: 18,
   },

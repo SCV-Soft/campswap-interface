@@ -1,6 +1,6 @@
 import { Field, MeowshiState } from '../../pages/tools/meowshi'
 import React, { FC } from 'react'
-import { SUSHI, XSUSHI } from '../../constants'
+import { CAMP, XCAMP } from '../../constants'
 
 import { ChainId } from '@sushiswap/sdk'
 import Image from 'next/image'
@@ -37,13 +37,13 @@ const CurrencyInputPanel: FC<CurrencyInputPanelProps> = ({ field, meowshiState, 
             <div className="flex gap-4 items-center">
               <Image
                 src={
-                  currency === SUSHI[ChainId.MAINNET]
-                    ? '/images/tokens/sushi-square.jpg'
-                    : currency === XSUSHI
-                    ? '/images/tokens/xsushi-square.jpg'
+                  currency === CAMP[ChainId.MAINNET]
+                    ? '/images/tokens/camp-square.jpg'
+                    : currency === XCAMP
+                    ? '/images/tokens/xcamp-square.jpg'
                     : '/images/tokens/nyan-square.jpg'
                 }
-                alt="SUSHI"
+                alt="CAMP"
                 width="62px"
                 height="62px"
                 objectFit="contain"
@@ -53,13 +53,13 @@ const CurrencyInputPanel: FC<CurrencyInputPanelProps> = ({ field, meowshiState, 
                 <Typography variant="h3" className="text-high-emphesis leading-6" weight={700}>
                   {currency?.symbol}
                 </Typography>
-                {(currency === SUSHI[ChainId.MAINNET] || currency === XSUSHI) && (
+                {(currency === CAMP[ChainId.MAINNET] || currency === XCAMP) && (
                   <Typography
                     variant="xs"
                     className="underline text-blue cursor-pointer"
-                    onClick={() => setCurrency(currency === XSUSHI ? SUSHI[ChainId.MAINNET] : XSUSHI, field)}
+                    onClick={() => setCurrency(currency === XCAMP ? CAMP[ChainId.MAINNET] : XCAMP, field)}
                   >
-                    {currencies[field] === SUSHI[ChainId.MAINNET] ? i18n._(t`Use xSUSHI`) : i18n._(t`Use SUSHI`)}
+                    {currencies[field] === CAMP[ChainId.MAINNET] ? i18n._(t`Use xCAMP`) : i18n._(t`Use CAMP`)}
                   </Typography>
                 )}
               </div>

@@ -2,14 +2,14 @@
   {
     "inputs": [
       {
-        "internalType": "contract SushiToken",
-        "name": "_sushi",
+        "internalType": "contract CampToken",
+        "name": "_camp",
         "type": "address"
       },
       { "internalType": "address", "name": "_devaddr", "type": "address" },
       {
         "internalType": "uint256",
-        "name": "_sushiPerBlock",
+        "name": "_campPerBlock",
         "type": "uint256"
       },
       { "internalType": "uint256", "name": "_startBlock", "type": "uint256" },
@@ -140,7 +140,7 @@
       { "internalType": "uint256", "name": "_pid", "type": "uint256" },
       { "internalType": "address", "name": "_user", "type": "address" }
     ],
-    "name": "pendingSushi",
+    "name": "pendingCamp",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
@@ -162,7 +162,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accSushiPerShare",
+        "name": "accCampPerShare",
         "type": "uint256"
       }
     ],
@@ -203,14 +203,14 @@
   },
   {
     "inputs": [],
-    "name": "sushi",
-    "outputs": [{ "internalType": "contract SushiToken", "name": "", "type": "address" }],
+    "name": "camp",
+    "outputs": [{ "internalType": "contract CampToken", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "sushiPerBlock",
+    "name": "campPerBlock",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"

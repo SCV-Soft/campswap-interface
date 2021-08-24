@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import { CRXSUSHI, SUSHI, XSUSHI } from '../../../constants'
-import { ChainId, CurrencyAmount, SUSHI_ADDRESS, Token } from '@sushiswap/sdk'
+import { CRXCAMP, CAMP, XCAMP } from '../../../constants'
+import { ChainId, CurrencyAmount, CAMP_ADDRESS, Token } from '@sushiswap/sdk'
 import { tryParseAmount } from '../../../functions'
 import { useActiveWeb3React, useApproveCallback, useInariContract, useZenkoContract } from '../../../hooks'
 import { useTokenBalances } from '../../wallet/hooks'
@@ -10,43 +10,43 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDerivedInariState } from '../hooks'
 
 export const general: StrategyGeneralInfo = {
-  name: 'SUSHI → Cream',
-  steps: ['SUSHI', 'xSUSHI', 'Cream'],
-  zapMethod: 'stakeSushiToCream',
-  unzapMethod: 'unstakeSushiFromCream',
-  description: t`Stake SUSHI for xSUSHI and deposit into Cream in one click. xSUSHI in Cream (crXSUSHI) can be lent or used as collateral for borrowing.`,
-  inputSymbol: 'SUSHI',
-  outputSymbol: 'xSUSHI in Cream',
+  name: 'CAMP → Cream',
+  steps: ['CAMP', 'xCAMP', 'Cream'],
+  zapMethod: 'stakeCampToCream',
+  unzapMethod: 'unstakeCampFromCream',
+  description: t`Stake CAMP for xCAMP and deposit into Cream in one click. xCAMP in Cream (crXCAMP) can be lent or used as collateral for borrowing.`,
+  inputSymbol: 'CAMP',
+  outputSymbol: 'xCAMP in Cream',
 }
 
 export const tokenDefinitions: StrategyTokenDefinitions = {
   inputToken: {
     chainId: ChainId.MAINNET,
-    address: SUSHI_ADDRESS[ChainId.MAINNET],
+    address: CAMP_ADDRESS[ChainId.MAINNET],
     decimals: 18,
-    symbol: 'SUSHI',
+    symbol: 'CAMP',
   },
   outputToken: {
     chainId: ChainId.MAINNET,
     address: '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272',
     decimals: 18,
-    symbol: 'XSUSHI',
+    symbol: 'XCAMP',
   },
 }
 
-const useStakeSushiToCreamStrategy = (): StrategyHook => {
+const useStakeCampToCreamStrategy = (): StrategyHook => {
   const { account } = useActiveWeb3React()
   const { zapIn, inputValue } = useDerivedInariState()
   const zenkoContract = useZenkoContract()
   const inariContract = useInariContract()
-  const balances = useTokenBalances(account, [SUSHI[ChainId.MAINNET], CRXSUSHI])
+  const balances = useTokenBalances(account, [CAMP[ChainId.MAINNET], CRXCAMP])
   const cTokenAmountRef = useRef<CurrencyAmount<Token>>(null)
   const approveAmount = useMemo(() => (zapIn ? inputValue : cTokenAmountRef.current), [inputValue, zapIn])
 
-  // Override approveCallback for this strategy as we need to approve CRXSUSHI on zapOut
+  // Override approveCallback for this strategy as we need to approve CRXCAMP on zapOut
   const approveCallback = useApproveCallback(approveAmount, inariContract?.address)
   const { execute, setBalances, ...baseStrategy } = useBaseStrategy({
-    id: 'stakeSushiToCreamStrategy',
+    id: 'stakeCampToCreamStrategy',
     general,
     tokenDefinitions,
   })
@@ -55,14 +55,14 @@ const useStakeSushiToCreamStrategy = (): StrategyHook => {
     async (val: CurrencyAmount<Token>) => {
       if (!zenkoContract || !val) return null
 
-      const bal = await zenkoContract.toCtoken(CRXSUSHI.address, val.quotient.toString())
-      return CurrencyAmount.fromRawAmount(CRXSUSHI, bal.toString())
+      const bal = await zenkoContract.toCtoken(CRXCAMP.address, val.quotient.toString())
+      return CurrencyAmount.fromRawAmount(CRXCAMP, bal.toString())
     },
     [zenkoContract]
   )
 
-  // Run before executing transaction creation by transforming from xSUSHI value to crXSUSHI value
-  // As you will be spending crXSUSHI when unzapping from this strategy
+  // Run before executing transaction creation by transforming from xCAMP value to crXCAMP value
+  // As you will be spending crXCAMP when unzapping from this strategy
   const preExecute = useCallback(
     async (val: CurrencyAmount<Token>) => {
       if (zapIn) return execute(val)
@@ -79,14 +79,14 @@ const useStakeSushiToCreamStrategy = (): StrategyHook => {
     if (!zenkoContract || !balances) return
 
     const main = async () => {
-      if (!balances[CRXSUSHI.address]) return tryParseAmount('0', XSUSHI)
+      if (!balances[CRXCAMP.address]) return tryParseAmount('0', XCAMP)
       const bal = await zenkoContract.fromCtoken(
-        CRXSUSHI.address,
-        balances[CRXSUSHI.address].toFixed().toBigNumber(CRXSUSHI.decimals).toString()
+        CRXCAMP.address,
+        balances[CRXCAMP.address].toFixed().toBigNumber(CRXCAMP.decimals).toString()
       )
       setBalances({
-        inputTokenBalance: balances[SUSHI[ChainId.MAINNET].address],
-        outputTokenBalance: CurrencyAmount.fromRawAmount(XSUSHI, bal.toString()),
+        inputTokenBalance: balances[CAMP[ChainId.MAINNET].address],
+        outputTokenBalance: CurrencyAmount.fromRawAmount(XCAMP, bal.toString()),
       })
     }
 
@@ -104,4 +104,4 @@ const useStakeSushiToCreamStrategy = (): StrategyHook => {
   )
 }
 
-export default useStakeSushiToCreamStrategy
+export default useStakeCampToCreamStrategy

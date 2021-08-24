@@ -1,6 +1,6 @@
 import {
   masterChefV1PairAddressesQuery,
-  masterChefV1SushiPerBlockQuery,
+  masterChefV1CampPerBlockQuery,
   masterChefV1TotalAllocPointQuery,
   masterChefV2PairAddressesQuery,
   miniChefPairAddressesQuery,
@@ -16,23 +16,23 @@ import { GRAPH_HOST } from '../constants'
 import { request } from 'graphql-request'
 
 export const MINICHEF = {
-  [ChainId.MATIC]: 'sushiswap/matic-minichef',
+  [ChainId.MATIC]: 'campswap/matic-minichef',
   [ChainId.XDAI]: 'matthewlilley/xdai-minichef',
-  [ChainId.HARMONY]: 'sushiswap/harmony-minichef',
+  [ChainId.HARMONY]: 'campswap/harmony-minichef',
 }
 
 export const miniChef = async (query, chainId = ChainId.MAINNET) =>
   request(`${GRAPH_HOST[chainId]}/subgraphs/name/${MINICHEF[chainId]}`, query)
 
 export const MASTERCHEF_V2 = {
-  [ChainId.MAINNET]: 'sushiswap/master-chefv2',
+  [ChainId.MAINNET]: 'campswap/master-chefv2',
 }
 
 export const masterChefV2 = async (query, chainId = ChainId.MAINNET) =>
   request(`${GRAPH_HOST[chainId]}/subgraphs/name/${MASTERCHEF_V2[chainId]}`, query)
 
 export const MASTERCHEF_V1 = {
-  [ChainId.MAINNET]: 'sushiswap/master-chef',
+  [ChainId.MAINNET]: 'campswap/master-chef',
 }
 
 export const masterChefV1 = async (query, chainId = ChainId.MAINNET) =>
@@ -45,11 +45,11 @@ export const getMasterChefV1TotalAllocPoint = async () => {
   return totalAllocPoint
 }
 
-export const getMasterChefV1SushiPerBlock = async () => {
+export const getMasterChefV1CampPerBlock = async () => {
   const {
-    masterChef: { sushiPerBlock },
-  } = await masterChefV1(masterChefV1SushiPerBlockQuery)
-  return sushiPerBlock / 1e18
+    masterChef: { campPerBlock },
+  } = await masterChefV1(masterChefV1CampPerBlockQuery)
+  return campPerBlock / 1e18
 }
 
 export const getMasterChefV1Farms = async () => {

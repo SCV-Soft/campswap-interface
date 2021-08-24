@@ -50,7 +50,7 @@ export default function Me() {
   }, [dispatch, chainId])
 
   const { data, error }: SWRResponse<any, Error> = useSWR(
-    `https://api.covalenthq.com/v1/${chainId}/address/${account}/stacks/sushiswap/acts/?&key=ckey_cba3674f2ce5450f9d5dd290589&swaps=true&quote-currency=usd`,
+    `https://api.covalenthq.com/v1/${chainId}/address/${account}/stacks/campswap/acts/?&key=ckey_cba3674f2ce5450f9d5dd290589&swaps=true&quote-currency=usd`,
     (url) =>
       fetch(url)
         .then((r) => r.json())
@@ -63,14 +63,14 @@ export default function Me() {
   return (
     <Container id="user-page" className="py-4 space-y-3 md:py-8 lg:py-12" maxWidth="2xl">
       <Head>
-        <title>My SUSHI | Sushi</title>
-        <meta key="description" name="description" content="My SUSHI" />
+        <title>My CAMP | Camp</title>
+        <meta key="description" name="description" content="My CAMP" />
       </Head>
       <div className="p-4 mb-3 space-y-3">
         <Back />
 
         <Typography component="h1" variant="h2" className=" text-high-emphesis">
-          {i18n._(t`My SUSHI`)}
+          {i18n._(t`My CAMP`)}
         </Typography>
       </div>
 

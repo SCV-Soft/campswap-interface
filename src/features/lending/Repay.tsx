@@ -2,7 +2,7 @@ import { ExchangeRateCheckBox, SwapCheckbox } from './Checkbox'
 import { KashiApproveButton, TokenApproveButton } from './Button'
 import { Percent, WNATIVE } from '@sushiswap/sdk'
 import React, { useContext, useMemo, useState } from 'react'
-import { SUSHISWAP_MULTISWAPPER_ADDRESS, SUSHISWAP_MULTI_EXACT_SWAPPER_ADDRESS } from '../../constants/kashi'
+import { CAMPSWAP_MULTISWAPPER_ADDRESS, CAMPSWAP_MULTI_EXACT_SWAPPER_ADDRESS } from '../../constants/kashi'
 import { Warning, Warnings } from '../../entities/Warnings'
 import { ZERO, e10, maximum, minimum } from '../../functions/math'
 import { computeRealizedLPFeePercent, warningSeverity } from '../../functions/prices'
@@ -236,7 +236,7 @@ export default function Repay({ pair }: RepayProps) {
       const share = toShare(pair.collateral, pair.userCollateralAmount.value)
 
       cooker.removeCollateral(pair.userCollateralShare, true)
-      cooker.bentoTransferCollateral(pair.userCollateralShare, SUSHISWAP_MULTI_EXACT_SWAPPER_ADDRESS[chainId || 1])
+      cooker.bentoTransferCollateral(pair.userCollateralShare, CAMPSWAP_MULTI_EXACT_SWAPPER_ADDRESS[chainId || 1])
       cooker.repayShare(pair.userBorrowPart)
 
       const path = trade.route.path.map((token) => token.address) || []
@@ -265,7 +265,7 @@ export default function Repay({ pair }: RepayProps) {
       )
 
       cooker.action(
-        SUSHISWAP_MULTI_EXACT_SWAPPER_ADDRESS[chainId || 1],
+        CAMPSWAP_MULTI_EXACT_SWAPPER_ADDRESS[chainId || 1],
         ZERO,
         ethers.utils.hexConcat([ethers.utils.hexlify('0x3087d742'), data]),
         true,

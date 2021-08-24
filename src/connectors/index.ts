@@ -100,8 +100,8 @@ export const portis = new PortisConnector({
 // mainnet only
 export const walletlink = new WalletLinkConnector({
   url: RPC[ChainId.MAINNET],
-  appName: 'SushiSwap',
-  appLogoUrl: 'https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png',
+  appName: 'CampSwap',
+  appLogoUrl: 'https://raw.githubusercontent.com/campswap/art/master/camp/logo-256x256.png',
 })
 
 // mainnet only

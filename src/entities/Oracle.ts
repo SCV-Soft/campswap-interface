@@ -1,7 +1,7 @@
 import {
   CHAINLINK_ORACLE_ADDRESS,
-  SUSHISWAP_TWAP_0_ORACLE_ADDRESS,
-  SUSHISWAP_TWAP_1_ORACLE_ADDRESS,
+  CAMPSWAP_TWAP_0_ORACLE_ADDRESS,
+  CAMPSWAP_TWAP_1_ORACLE_ADDRESS,
 } from '../constants/kashi'
 import { ChainId, Token } from '@sushiswap/sdk'
 
@@ -39,17 +39,17 @@ export abstract class AbstractOracle implements Oracle {
   }
 }
 
-export class SushiSwapTWAP0Oracle extends AbstractOracle {
+export class CampSwapTWAP0Oracle extends AbstractOracle {
   constructor(pair: any, chainId: ChainId, tokens?: Token[]) {
     super(pair, chainId, tokens)
-    this.name = 'SushiSwap'
+    this.name = 'CampSwap'
   }
 }
 
-export class SushiSwapTWAP1Oracle extends AbstractOracle {
+export class CampSwapTWAP1Oracle extends AbstractOracle {
   constructor(pair: any, chainId: ChainId, tokens?: Token[]) {
     super(pair, chainId, tokens)
-    this.name = 'SushiSwap'
+    this.name = 'CampSwap'
   }
 }
 
@@ -127,9 +127,9 @@ function lowerEqual(value1: string, value2: string) {
 export function getOracle(pair: any, chainId: ChainId, tokens: any): Oracle {
   if (lowerEqual(pair.oracle, CHAINLINK_ORACLE_ADDRESS)) {
     return new ChainlinkOracle(pair, chainId, tokens)
-  } else if (pair.oracle === SUSHISWAP_TWAP_0_ORACLE_ADDRESS) {
-    return new SushiSwapTWAP0Oracle(pair, chainId, tokens)
-  } else if (pair.oracle === SUSHISWAP_TWAP_1_ORACLE_ADDRESS) {
-    return new SushiSwapTWAP1Oracle(pair, chainId, tokens)
+  } else if (pair.oracle === CAMPSWAP_TWAP_0_ORACLE_ADDRESS) {
+    return new CampSwapTWAP0Oracle(pair, chainId, tokens)
+  } else if (pair.oracle === CAMPSWAP_TWAP_1_ORACLE_ADDRESS) {
+    return new CampSwapTWAP1Oracle(pair, chainId, tokens)
   }
 }
