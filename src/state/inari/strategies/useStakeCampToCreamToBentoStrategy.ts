@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import { CRXCAMP, CAMP } from '../../../constants'
-import { ChainId, CAMP_ADDRESS, Token } from '@sushiswap/sdk'
+import { ChainId, SUSHI_ADDRESS as CAMP_ADDRESS, Token } from '@sushiswap/sdk'
 import { e10, tryParseAmount } from '../../../functions'
 import { useBentoBalance } from '../../bentobox/hooks'
 import { useActiveWeb3React, useZenkoContract } from '../../../hooks'

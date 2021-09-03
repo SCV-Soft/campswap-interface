@@ -5,7 +5,7 @@ import Fraction from '../entities/Fraction'
 import { POOL_DENY } from '../constants'
 import orderBy from 'lodash/orderBy'
 import range from 'lodash/range'
-import campData from '@sushiswap/camp-data'
+import campData from '@sushiswap/sushi-data'
 import { useActiveWeb3React } from './useActiveWeb3React'
 import { useBoringHelperContract } from './useContract'
 

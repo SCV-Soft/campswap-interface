@@ -1,4 +1,4 @@
-import { ChainId, Currency, NATIVE, CAMP_ADDRESS } from '@sushiswap/sdk'
+import { ChainId, Currency, NATIVE, SUSHI_ADDRESS as CAMP_ADDRESS } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
 
 import { ANALYTICS_URL } from '../../constants'

@@ -10,7 +10,7 @@ import {
   MAKER_ADDRESS,
   MASTERCHEF_ADDRESS,
   ROUTER_ADDRESS,
-  CAMP_ADDRESS,
+  SUSHI_ADDRESS as CAMP_ADDRESS,
   TIMELOCK_ADDRESS,
   WNATIVE,
 } from '@sushiswap/sdk'
@@ -57,7 +57,7 @@ import MULTICALL2_ABI from '../constants/abis/multicall2.json'
 import PENDING_ABI from '../constants/abis/pending.json'
 import ROUTER_ABI from '../constants/abis/router.json'
 import SAAVE_ABI from '../constants/abis/saave.json'
-import CAMPROLL_ABI from '@sushiswap/core/abi/CampRoll.json'
+import CAMPROLL_ABI from '@sushiswap/core/abi/SushiRoll.json'
 import CAMPSWAP_TWAP_ORACLE_ABI from '../constants/abis/campswap-slp-oracle.json'
 import CAMP_ABI from '../constants/abis/camp.json'
 import TIMELOCK_ABI from '../constants/abis/timelock.json'
@@ -70,7 +70,7 @@ import { getVerifyingContract } from 'limitorderv2-sdk'
 import { useActiveWeb3React } from './useActiveWeb3React'
 import { useMemo } from 'react'
 
-const UNI_FACTORY_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+const UNI_FACTORY_ADDRESS = '0xbbE8f9BA3fDE886D0f9Ca60951Dd9CEEdCfFe741'
 
 export function useEIP2612Contract(tokenAddress?: string): Contract | null {
   return useContract(tokenAddress, EIP_2612_ABI, false)
@@ -167,7 +167,7 @@ export function useMasterChefContract(withSignerIfPossible?: boolean): Contract 
 }
 
 export function useMasterChefV2Contract(withSignerIfPossible?: boolean): Contract | null {
-  return useContract('0xEF0881eC094552b2e128Cf945EF17a6752B4Ec5d', MASTERCHEF_V2_ABI, withSignerIfPossible)
+  return useContract('0x78411515497102199AF91C99CA31FEE544B35365', MASTERCHEF_V2_ABI, withSignerIfPossible)
 }
 export function useMiniChefContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()

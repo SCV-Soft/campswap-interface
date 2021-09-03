@@ -1,4 +1,4 @@
-import { ChainId, Ether, CAMP_ADDRESS, Token, WETH9, WNATIVE } from '@sushiswap/sdk'
+import { ChainId, Ether, SUSHI_ADDRESS as CAMP_ADDRESS, Token, WETH9, WNATIVE } from '@sushiswap/sdk'
 
 import { SupportedChainId } from '../chains'
 
