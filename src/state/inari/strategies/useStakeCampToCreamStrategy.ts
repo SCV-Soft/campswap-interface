@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro'
 import { CRXCAMP, CAMP, XCAMP } from '../../../constants'
-import { ChainId, CurrencyAmount, SUSHI_ADDRESS as CAMP_ADDRESS, Token } from '@sushiswap/sdk'
+import { ChainId, CurrencyAmount, Token } from '@sushiswap/sdk'
+import { CAMP_ADDRESS } from '../../../constants/campswapAddresses'
 import { tryParseAmount } from '../../../functions'
 import { useActiveWeb3React, useApproveCallback, useInariContract, useZenkoContract } from '../../../hooks'
 import { useTokenBalances } from '../../wallet/hooks'

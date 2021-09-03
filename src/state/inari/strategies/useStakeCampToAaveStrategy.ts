@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro'
 import { AXCAMP, CAMP } from '../../../constants'
-import { ChainId, SUSHI_ADDRESS as CAMP_ADDRESS } from '@sushiswap/sdk'
+import { ChainId } from '@sushiswap/sdk'
+import { CAMP_ADDRESS } from '../../../constants/campswapAddresses'
 import { useActiveWeb3React } from '../../../hooks'
 import { useTokenBalances } from '../../wallet/hooks'
 import { StrategyGeneralInfo, StrategyHook, StrategyTokenDefinitions } from '../types'

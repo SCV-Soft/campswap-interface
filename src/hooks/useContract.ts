@@ -10,7 +10,6 @@ import {
   MAKER_ADDRESS,
   MASTERCHEF_ADDRESS,
   ROUTER_ADDRESS,
-  SUSHI_ADDRESS as CAMP_ADDRESS,
   TIMELOCK_ADDRESS,
   WNATIVE,
 } from '@sushiswap/sdk'
@@ -24,6 +23,7 @@ import {
   CAMPSWAP_TWAP_1_ORACLE_ADDRESS,
 } from '../constants/kashi'
 import { MERKLE_DISTRIBUTOR_ADDRESS, CAMP } from '../constants'
+import { CAMP_ADDRESS } from '../constants/campswapAddresses'
 
 import ALCX_REWARDER_ABI from '../constants/abis/alcx-rewarder.json'
 import ARCHER_ROUTER_ABI from '../constants/abis/archer-router.json'

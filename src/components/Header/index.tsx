@@ -1,6 +1,7 @@
-import { ChainId, Currency, NATIVE, SUSHI_ADDRESS as CAMP_ADDRESS } from '@sushiswap/sdk'
+import { ChainId, Currency, NATIVE } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
 
+import { CAMP_ADDRESS } from '../../constants/campswapAddresses'
 import { ANALYTICS_URL } from '../../constants'
 import Buy from '../../features/ramp'
 import ExternalLink from '../ExternalLink'
