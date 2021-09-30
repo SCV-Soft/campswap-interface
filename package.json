@@ -1,6 +1,6 @@
 {
   "name": "@sushiswap/interface",
-  "description": "CampSwap Interface",
+  "description": "ABBCSwap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {
