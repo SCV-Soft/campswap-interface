@@ -43,7 +43,7 @@ export const walletconnect = new WalletConnectConnector({
 export const lattice = new LatticeConnector({
   chainId: NETWORK_CHAIN_ID,
   url: NETWORK_URL,
-  appName: 'ABBCSwap'
+  appName: 'HMRSwap'
 })
 
 // mainnet only
@@ -61,6 +61,6 @@ export const portis = new PortisConnector({
 // mainnet only
 export const walletlink = new WalletLinkConnector({
   url: NETWORK_URL,
-  appName: 'ABBCSwap',
+  appName: 'HMRSwap',
   appLogoUrl: 'https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png'
 })

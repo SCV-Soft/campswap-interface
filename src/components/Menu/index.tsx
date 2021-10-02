@@ -121,13 +121,13 @@ export default function Menu() {
             <MessageCircle size={14} />
             Discord
           </MenuItem>
-          <MenuItem id="link" href="https://analytics.sushiswap.fi/">
+          <MenuItem id="link" href="https://analytics.sushi.com/">
             <PieChart size={14} />
             Analytics
           </MenuItem>
           {/* {account && (
             <ButtonPrimary onClick={openClaimModal} padding="8px 16px" width="100%" borderRadius="12px" mt="0.5rem">
-              Claim ABBC
+              Claim HMR
             </ButtonPrimary>
           )} */}
         </MenuFlyout>

@@ -1,6 +1,6 @@
 {
   "name": "@sushiswap/interface",
-  "description": "ABBCSwap Interface",
+  "description": "HMRSwap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {

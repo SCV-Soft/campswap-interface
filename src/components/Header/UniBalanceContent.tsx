@@ -67,7 +67,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">Your ABBC Breakdown</TYPE.white>
+            <TYPE.white color="white">Your HMR Breakdown</TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowUniBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -105,11 +105,11 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">ABBC price:</TYPE.white>
+              <TYPE.white color="white">HMR price:</TYPE.white>
               <TYPE.white color="white">${uniPrice?.toFixed(2) ?? '-'}</TYPE.white>
             </RowBetween>
             {/* <RowBetween>
-              <TYPE.white color="white">ABBC in circulation:</TYPE.white>
+              <TYPE.white color="white">HMR in circulation:</TYPE.white>
               <TYPE.white color="white">{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween> */}
             <RowBetween>
@@ -117,8 +117,8 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://analytics.sushiswap.fi/tokens/${uni.address}`}>
-                View ABBC Analytics
+              <ExternalLink href={`https://analytics.sushi.com/tokens/${uni.address}`}>
+                View HMR Analytics
               </ExternalLink>
             ) : null}
           </AutoColumn>

@@ -6,7 +6,7 @@ import { fortmatic, injected, portis, lattice, walletconnect, walletlink } from 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F',
   [ChainId.RINKEBY]: '0x78651262A36342c4Ab878ec312D2c1A9494ADDf5',
-  [ChainId.ROPSTEN]: '0x93E05Fe37D7AA84B33deed6735624694CaeF7c63', // ABBC Ropsten
+  [ChainId.ROPSTEN]: '0x93E05Fe37D7AA84B33deed6735624694CaeF7c63', // HMR Ropsten
   [ChainId.GÖRLI]: '0xC0fBF54bbf3f5ef013559905AF214648e8e50010',
   [ChainId.KOVAN]: '0xB6167233BF964ea7701691aC3970186145C810d2'
 }
@@ -27,8 +27,8 @@ export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f57172140
 export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
+export const HMR = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'HMR', 'HOMEROS')
 
-export const ABBC = new Token(ChainId.MAINNET, '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2', 18, 'ABBC', 'ABBCToken')
 export const YAM = new Token(ChainId.MAINNET, '0x0e2298E3B3390e3b945a5456fBf59eCc3f55DA16', 18, 'YAM', 'YAM')
 export const RUNE = new Token(ChainId.MAINNET, '0x3155BA85D5F96b2d030a4966AF206230e46849cb', 18, 'RUNE', 'RUNE.ETH')
 export const YFI = new Token(ChainId.MAINNET, '0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e', 18, 'YFI', 'Yearn')
@@ -58,13 +58,13 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
 // const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
 
-// Address for ABBC token
+// Address for HMR token
 export const UNI: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2', 18, 'ABBC', 'ABBCToken'),
-  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'ABBC', 'ABBCToken'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x881c180639052b8097C72DCaDeFA5d626678Db98', 18, 'ABBC', 'ABBCToken'), // ABBC Ropsten
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'ABBC', 'ABBCToken'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'ABBC', 'ABBCToken')
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2', 18, 'HMR', 'HMRToken'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'HMR', 'HMRToken'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x881c180639052b8097C72DCaDeFA5d626678Db98', 18, 'HMR', 'HMRToken'), // HMR Ropsten
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'HMR', 'HMRToken'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'HMR', 'HMRToken')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
@@ -89,7 +89,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, ABBC, YAM, WBTC, RUNE, CREAM, BAC, FXS, CRV, ALPHA],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, HMR, YAM, WBTC, RUNE, CREAM, BAC, FXS, CRV, ALPHA],
   [ChainId.RINKEBY]: [...WETH_ONLY[ChainId.RINKEBY], SLUG, BELL, RUP, EuroDollar, ChinYen, ERIS]
   // [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC]
 }
