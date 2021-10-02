@@ -60,7 +60,7 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
 // Address for HMR token
 export const UNI: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2', 18, 'HMR', 'HMRToken'),
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xB1A30851E3f7d841b231B086479608e17198363A', 18, 'HMR', 'HMRToken'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'HMR', 'HMRToken'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0x881c180639052b8097C72DCaDeFA5d626678Db98', 18, 'HMR', 'HMRToken'), // HMR Ropsten
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xf095b8Fd7845a0631FcE1A7FAf05F6ED56Ade87c', 18, 'HMR', 'HMRToken'),
