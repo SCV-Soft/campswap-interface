@@ -1,5 +1,5 @@
 import { ChainId, TokenAmount } from '@sushiswap/sdk'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
@@ -16,6 +16,7 @@ import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../earn/styled'
+import axios from 'axios'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -49,7 +50,13 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
   const uniToClaim: TokenAmount | undefined = useTotalUniEarned()
 
   const totalSupply: TokenAmount | undefined = useTotalSupply(uni)
-  const uniPrice = useUSDCPrice(uni)
+  const [uniPrice, setUniPrice] = useState(0)
+  axios.get("https://api.coingecko.com/api/v3/simple/price?ids=homeros&vs_currencies=usd", {
+
+  }).then(res => {
+    setUniPrice(res.data.homeros.usd)
+  })
+
   const blockTimestamp = useCurrentBlockTimestamp()
   const unclaimedUni = useTokenBalance(useMerkleDistributorContract()?.address, uni)
   const circulation: TokenAmount | undefined = useMemo(
